@@ -33,12 +33,12 @@ const GallerySection = () => {
         {/* Gallery Slideshow */}
         <GallerySlideshow />
 
-        {/* 5 Points Cup Logo */}
+        {/* Street Football Action Image */}
         <div className="text-center mt-16">
           <img 
-            src="/lovable-uploads/25e54c13-7f5d-458d-8d27-12a8912e3af6.png" 
-            alt="5 Points Cup Logo"
-            className="mx-auto h-16 object-contain"
+            src="/lovable-uploads/7c408cbd-48db-45e0-8267-e1881f129203.png" 
+            alt="Street Football Action"
+            className="mx-auto h-20 object-contain"
           />
         </div>
       </div>
