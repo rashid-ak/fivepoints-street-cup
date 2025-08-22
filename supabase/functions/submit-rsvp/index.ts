@@ -28,6 +28,33 @@ serve(async (req) => {
     const { rsvpData } = await req.json();
     logStep("Received RSVP data", { email: rsvpData.email });
 
+    // Validate required fields
+    if (!rsvpData.name || !rsvpData.email) {
+      throw new Error("Name and email are required");
+    }
+
+    // Check for duplicate RSVP within 5 minutes (anti-spam)
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+    const { data: existingRsvp } = await supabaseClient
+      .from("rsvps")
+      .select("id")
+      .eq("email", rsvpData.email)
+      .eq("event_date", "2025-09-20")
+      .gt("created_at", fiveMinutesAgo)
+      .maybeSingle();
+
+    if (existingRsvp) {
+      logStep("Duplicate RSVP detected", { email: rsvpData.email });
+      return new Response(JSON.stringify({ 
+        success: true,
+        rsvpId: existingRsvp.id,
+        message: "RSVP already exists"
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 200,
+      });
+    }
+
     // Create RSVP record in database
     const { data: rsvp, error: rsvpError } = await supabaseClient
       .from("rsvps")
@@ -35,7 +62,8 @@ serve(async (req) => {
         full_name: rsvpData.name,
         email: rsvpData.email,
         zip_code: rsvpData.zipCode,
-        party_size: parseInt(rsvpData.partySize)
+        party_size: parseInt(rsvpData.partySize),
+        event_date: "2025-09-20"
       })
       .select()
       .single();
@@ -46,6 +74,24 @@ serve(async (req) => {
     }
 
     logStep("RSVP created successfully", { rsvpId: rsvp.id });
+
+    // Send confirmation email
+    try {
+      await supabaseClient.functions.invoke('send-confirmation-email', {
+        body: {
+          emailType: "rsvp_confirmation",
+          recipientEmail: rsvp.email,
+          data: {
+            name: rsvp.full_name,
+            partySize: rsvp.party_size
+          }
+        }
+      });
+      logStep("Confirmation email sent");
+    } catch (emailError) {
+      logStep("Failed to send confirmation email", emailError);
+      // Don't fail the RSVP for email errors
+    }
 
     return new Response(JSON.stringify({ 
       success: true,

@@ -32,30 +32,84 @@ serve(async (req) => {
     const { teamData } = await req.json();
     logStep("Received team data", { teamName: teamData.teamName });
 
-    // Create team record in database first
-    const { data: team, error: teamError } = await supabaseClient
-      .from("teams")
-      .insert({
-        team_name: teamData.teamName,
-        captain_name: teamData.captainName,
-        captain_email: teamData.captainEmail,
-        captain_phone: teamData.captainPhone,
-        players: teamData.players.filter((player: string) => player.trim() !== ''),
-        skill_level: teamData.skillLevel,
-        rules_acknowledged: teamData.rulesAcknowledged,
-        media_release: teamData.mediaRelease,
-        payment_status: 'unpaid',
-        amount: 10000
-      })
-      .select()
-      .single();
-
-    if (teamError) {
-      logStep("Team creation error", teamError);
-      throw new Error(`Failed to create team: ${teamError.message}`);
+    // Validate required fields
+    if (!teamData.teamName || !teamData.captainName || !teamData.captainEmail || !teamData.captainPhone || !teamData.rulesAcknowledged || !teamData.mediaRelease) {
+      throw new Error("All required fields must be filled and rules must be acknowledged");
     }
 
-    logStep("Team created successfully", { teamId: team.id });
+    // Validate team size (max 6 players including captain)
+    const totalPlayers = teamData.players.filter((player: string) => player.trim() !== '').length + 1; // +1 for captain
+    if (totalPlayers > 6) {
+      throw new Error("Team size cannot exceed 6 players total");
+    }
+
+    // Generate submission ID
+    const submissionId = `team_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+    // Check for duplicate submission (anti-spam)
+    const { data: existingTeam } = await supabaseClient
+      .from("teams")
+      .select("id")
+      .eq("captain_email", teamData.captainEmail)
+      .eq("event_date", "2025-09-20")
+      .maybeSingle();
+
+    let team; // Declare team variable
+    if (existingTeam) {
+      logStep("Duplicate team submission detected", { email: teamData.captainEmail });
+      // Update existing team instead of creating new one
+      const { data: updatedTeam, error: updateError } = await supabaseClient
+        .from("teams")
+        .update({
+          team_name: teamData.teamName,
+          captain_name: teamData.captainName,
+          captain_phone: teamData.captainPhone,
+          players: teamData.players.filter((player: string) => player.trim() !== ''),
+          skill_level: teamData.skillLevel,
+          rules_acknowledged: teamData.rulesAcknowledged,
+          media_release: teamData.mediaRelease,
+          submission_id: submissionId,
+          amount: 10000
+        })
+        .eq("id", existingTeam.id)
+        .select()
+        .single();
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      team = updatedTeam;
+    } else {
+      // Create team record in database first
+      const { data: newTeam, error: teamError } = await supabaseClient
+        .from("teams")
+        .insert({
+          submission_id: submissionId,
+          team_name: teamData.teamName,
+          captain_name: teamData.captainName,
+          captain_email: teamData.captainEmail,
+          captain_phone: teamData.captainPhone,
+          players: teamData.players.filter((player: string) => player.trim() !== ''),
+          skill_level: teamData.skillLevel,
+          rules_acknowledged: teamData.rulesAcknowledged,
+          media_release: teamData.mediaRelease,
+          payment_status: 'unpaid',
+          amount: 10000,
+          event_date: "2025-09-20"
+        })
+        .select()
+        .single();
+
+      if (teamError) {
+        logStep("Team creation error", teamError);
+        throw new Error(`Failed to create team: ${teamError.message}`);
+      }
+
+      team = newTeam;
+    }
+
+    logStep("Team created/updated successfully", { teamId: team.id });
 
     // Initialize Stripe
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });

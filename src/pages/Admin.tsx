@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { supabase } from "@/integrations/supabase/client";
 import { Shield, Users, UserCheck, Settings } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { DiagnosticsTab } from "@/components/DiagnosticsTab";
 
 interface Team {
   id: string;
@@ -41,13 +43,23 @@ interface AdminSettings {
 }
 
 const Admin = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [teams, setTeams] = useState<Team[]>([]);
   const [rsvps, setRSVPs] = useState<RSVP[]>([]);
   const [settings, setSettings] = useState<AdminSettings | null>(null);
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("teams");
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Check if we should navigate to diagnostics tab
+    if (location.hash === "#diagnostics" && isAuthenticated) {
+      setActiveTab("diagnostics");
+    }
+  }, [location.hash, isAuthenticated]);
 
   useEffect(() => {
     // Check for existing session
@@ -274,11 +286,12 @@ const Admin = () => {
           </Card>
         </div>
 
-        <Tabs defaultValue="teams" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="teams">Teams ({teams.length})</TabsTrigger>
             <TabsTrigger value="rsvps">RSVPs ({rsvps.length})</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
+            <TabsTrigger value="diagnostics">Diagnostics</TabsTrigger>
           </TabsList>
 
           <TabsContent value="teams">
@@ -428,6 +441,10 @@ const Admin = () => {
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="diagnostics">
+            <DiagnosticsTab />
           </TabsContent>
         </Tabs>
       </div>

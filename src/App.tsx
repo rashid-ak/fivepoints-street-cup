@@ -8,6 +8,7 @@ import Registration from "./pages/Registration";
 import Admin from "./pages/Admin";
 import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
+import { AutoNavigate } from "./components/AutoNavigate";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AutoNavigate />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/registration" element={<Registration />} />

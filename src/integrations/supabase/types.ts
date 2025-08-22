@@ -56,10 +56,47 @@ export type Database = {
         }
         Relationships: []
       }
+      email_logs: {
+        Row: {
+          created_at: string
+          email_type: string
+          error_message: string | null
+          id: string
+          metadata: Json | null
+          recipient_email: string
+          retry_count: number | null
+          sent_at: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email_type: string
+          error_message?: string | null
+          id?: string
+          metadata?: Json | null
+          recipient_email: string
+          retry_count?: number | null
+          sent_at?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email_type?: string
+          error_message?: string | null
+          id?: string
+          metadata?: Json | null
+          recipient_email?: string
+          retry_count?: number | null
+          sent_at?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       rsvps: {
         Row: {
           created_at: string
           email: string
+          event_date: string | null
           full_name: string
           id: string
           party_size: number | null
@@ -68,6 +105,7 @@ export type Database = {
         Insert: {
           created_at?: string
           email: string
+          event_date?: string | null
           full_name: string
           id?: string
           party_size?: number | null
@@ -76,6 +114,7 @@ export type Database = {
         Update: {
           created_at?: string
           email?: string
+          event_date?: string | null
           full_name?: string
           id?: string
           party_size?: number | null
@@ -90,6 +129,7 @@ export type Database = {
           captain_name: string
           captain_phone: string
           created_at: string
+          event_date: string | null
           id: string
           media_release: boolean
           payment_status: string | null
@@ -98,6 +138,7 @@ export type Database = {
           skill_level: string
           stripe_payment_intent_id: string | null
           stripe_session_id: string | null
+          submission_id: string | null
           team_name: string
           updated_at: string
         }
@@ -107,6 +148,7 @@ export type Database = {
           captain_name: string
           captain_phone: string
           created_at?: string
+          event_date?: string | null
           id?: string
           media_release?: boolean
           payment_status?: string | null
@@ -115,6 +157,7 @@ export type Database = {
           skill_level: string
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
+          submission_id?: string | null
           team_name: string
           updated_at?: string
         }
@@ -124,6 +167,7 @@ export type Database = {
           captain_name?: string
           captain_phone?: string
           created_at?: string
+          event_date?: string | null
           id?: string
           media_release?: boolean
           payment_status?: string | null
@@ -132,8 +176,39 @@ export type Database = {
           skill_level?: string
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
+          submission_id?: string | null
           team_name?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      webhook_logs: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          event_type: string
+          id: string
+          payload: Json | null
+          processed: boolean | null
+          stripe_event_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          event_type: string
+          id?: string
+          payload?: Json | null
+          processed?: boolean | null
+          stripe_event_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          event_type?: string
+          id?: string
+          payload?: Json | null
+          processed?: boolean | null
+          stripe_event_id?: string | null
         }
         Relationships: []
       }
