@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Users, CreditCard, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -34,14 +35,52 @@ const Registration = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleTeamSubmit = () => {
-    // This would integrate with Stripe for payment
-    alert('Stripe integration requires Supabase backend setup. Please connect to Supabase first.');
+  const handleTeamSubmit = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('create-team-payment', {
+        body: { teamData: formData }
+      });
+      
+      if (error) throw error;
+      
+      // Open Stripe checkout in a new tab
+      window.open(data.url, '_blank');
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('Failed to create payment session. Please try again.');
+    }
   };
 
-  const handleRSVPSubmit = () => {
-    // This would save RSVP to database
-    alert('RSVP functionality requires Supabase backend setup. Please connect to Supabase first.');
+  const handleRSVPSubmit = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('submit-rsvp', {
+        body: { rsvpData: formData }
+      });
+      
+      if (error) throw error;
+      
+      alert('RSVP submitted successfully! Thank you for registering.');
+      setRegistrationType(null);
+      setFormData({
+        teamName: '',
+        captainName: '',
+        captainEmail: '',
+        captainPhone: '',
+        player2: '',
+        player3: '',
+        player4: '',
+        skillLevel: '',
+        rulesAcknowledged: false,
+        mediaRelease: false,
+        name: '',
+        email: '',
+        zipCode: '',
+        partySize: '1'
+      });
+    } catch (error) {
+      console.error('RSVP error:', error);
+      alert('Failed to submit RSVP. Please try again.');
+    }
   };
 
   if (!registrationType) {
@@ -81,7 +120,7 @@ const Registration = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="text-center">
-                      <div className="text-3xl font-black text-primary mb-2">$75</div>
+                      <div className="text-3xl font-black text-primary mb-2">$100</div>
                       <p className="text-sm text-muted-foreground">Entry fee per team</p>
                     </div>
                     
@@ -346,7 +385,7 @@ const Registration = () => {
                     </div>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-muted-foreground">Team Entry Fee</span>
-                      <span className="text-2xl font-bold text-foreground">$75.00</span>
+                      <span className="text-2xl font-bold text-foreground">$100.00</span>
                     </div>
                     <Button 
                       onClick={handleTeamSubmit}
