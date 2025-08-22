@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { compare } from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -8,7 +9,7 @@ const corsHeaders = {
 
 const logStep = (step: string, details?: any) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
-  console.log(`[SUBMIT-RSVP] ${step}${detailsStr}`);
+  console.log(`[ADMIN-AUTH] ${step}${detailsStr}`);
 };
 
 serve(async (req) => {
@@ -25,31 +26,42 @@ serve(async (req) => {
       { auth: { persistSession: false } }
     );
 
-    const { rsvpData } = await req.json();
-    logStep("Received RSVP data", { email: rsvpData.email });
+    const { password } = await req.json();
+    logStep("Received login attempt");
 
-    // Create RSVP record in database
-    const { data: rsvp, error: rsvpError } = await supabaseClient
-      .from("rsvps")
-      .insert({
-        full_name: rsvpData.name,
-        email: rsvpData.email,
-        zip_code: rsvpData.zipCode,
-        party_size: parseInt(rsvpData.partySize)
-      })
-      .select()
+    // Get admin settings
+    const { data: settings, error: settingsError } = await supabaseClient
+      .from("admin_settings")
+      .select("admin_password_hash")
       .single();
 
-    if (rsvpError) {
-      logStep("RSVP creation error", rsvpError);
-      throw new Error(`Failed to create RSVP: ${rsvpError.message}`);
+    if (settingsError) {
+      logStep("Settings error", settingsError);
+      throw new Error("Failed to get admin settings");
     }
 
-    logStep("RSVP created successfully", { rsvpId: rsvp.id });
+    // Verify password
+    const isValidPassword = await compare(password, settings.admin_password_hash);
+
+    if (!isValidPassword) {
+      logStep("Invalid password attempt");
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Invalid password" 
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 401,
+      });
+    }
+
+    logStep("Admin authenticated successfully");
+
+    // Generate a simple session token (in production, use proper JWT)
+    const sessionToken = crypto.randomUUID();
 
     return new Response(JSON.stringify({ 
       success: true,
-      rsvpId: rsvp.id
+      sessionToken
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,

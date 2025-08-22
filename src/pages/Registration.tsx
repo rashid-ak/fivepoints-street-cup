@@ -17,9 +17,7 @@ const Registration = () => {
     captainName: '',
     captainEmail: '',
     captainPhone: '',
-    player2: '',
-    player3: '',
-    player4: '',
+    players: ['', '', '', '', ''], // Array for up to 5 additional players
     skillLevel: '',
     rulesAcknowledged: false,
     mediaRelease: false,
@@ -29,11 +27,19 @@ const Registration = () => {
     zipCode: '',
     partySize: '1'
   });
-  const handleInputChange = (field: string, value: string | boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+  const handleInputChange = (field: string, value: string | boolean, index?: number) => {
+    if (field === 'players' && index !== undefined) {
+      setFormData(prev => {
+        const newPlayers = [...prev.players];
+        newPlayers[index] = value as string;
+        return { ...prev, players: newPlayers };
+      });
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [field]: value
+      }));
+    }
   };
   const handleTeamSubmit = async () => {
     try {
@@ -47,8 +53,8 @@ const Registration = () => {
       });
       if (error) throw error;
 
-      // Open Stripe checkout in a new tab
-      window.open(data.url, '_blank');
+      // Redirect to Stripe checkout
+      window.location.href = data.url;
     } catch (error) {
       console.error('Payment error:', error);
       alert('Failed to create payment session. Please try again.');
@@ -65,16 +71,14 @@ const Registration = () => {
         }
       });
       if (error) throw error;
-      alert('RSVP submitted successfully! Thank you for registering.');
+      navigate('/success?type=rsvp');
       setRegistrationType(null);
       setFormData({
         teamName: '',
         captainName: '',
         captainEmail: '',
         captainPhone: '',
-        player2: '',
-        player3: '',
-        player4: '',
+        players: ['', '', '', '', ''],
         skillLevel: '',
         rulesAcknowledged: false,
         mediaRelease: false,
@@ -119,7 +123,7 @@ const Registration = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="text-center">
-                      <div className="text-3xl font-black text-primary mb-2">$100</div>
+                      <div className="text-3xl font-black text-primary mb-2">$75</div>
                       <p className="text-sm text-muted-foreground">Entry fee per team</p>
                     </div>
                     
@@ -264,16 +268,42 @@ const Registration = () => {
 
                   {/* Team Players */}
                   <div className="space-y-4">
-                    
-                    
+                    <h3 className="text-lg font-bold text-foreground">Team Players (Captain + up to 5 additional players)</h3>
+                    <p className="text-sm text-muted-foreground">Add additional team members (optional). Maximum 6 total players including captain.</p>
                     
                     <div className="grid gap-4">
-                      <div>
-                        
-                        
-                      </div>
-                      
-                      
+                      {formData.players.map((player, index) => (
+                        <div key={index}>
+                          <Label htmlFor={`player${index + 1}`}>Player {index + 2} Name</Label>
+                          <Input 
+                            id={`player${index + 1}`}
+                            value={player}
+                            onChange={(e) => handleInputChange('players', e.target.value, index)}
+                            placeholder={`Player ${index + 2} full name (optional)`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Skill Level */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-bold text-foreground">Team Skill Level</h3>
+                    
+                    <div>
+                      <Label htmlFor="skillLevel">Overall Team Skill Level *</Label>
+                      <Select value={formData.skillLevel} onValueChange={value => handleInputChange('skillLevel', value)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select skill level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Beginner">Beginner - New to competitive play</SelectItem>
+                          <SelectItem value="Intermediate">Intermediate - Some tournament experience</SelectItem>
+                          <SelectItem value="Advanced">Advanced - Experienced competitive players</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
@@ -306,10 +336,10 @@ const Registration = () => {
                     </div>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-muted-foreground">Team Entry Fee</span>
-                      <span className="text-2xl font-bold text-foreground">$100.00</span>
+                      <span className="text-2xl font-bold text-foreground">$75.00</span>
                     </div>
-                    <Button onClick={handleTeamSubmit} className="w-full" variant="cta" disabled={!formData.rulesAcknowledged || !formData.mediaRelease}>
-                      Proceed to Payment
+                    <Button onClick={handleTeamSubmit} className="w-full" variant="cta" disabled={!formData.rulesAcknowledged || !formData.mediaRelease || !formData.teamName || !formData.captainName || !formData.captainEmail || !formData.captainPhone || !formData.skillLevel}>
+                      Proceed to Payment ($75.00)
                     </Button>
                   </div>
                 </> : <>
@@ -328,7 +358,15 @@ const Registration = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
-                      
+                      <div>
+                        <Label htmlFor="zipCode">Zip Code (Optional)</Label>
+                        <Input 
+                          id="zipCode" 
+                          value={formData.zipCode} 
+                          onChange={e => handleInputChange('zipCode', e.target.value)} 
+                          placeholder="12345" 
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="partySize">Party Size</Label>
                         <Select value={formData.partySize} onValueChange={value => handleInputChange('partySize', value)}>
@@ -346,7 +384,7 @@ const Registration = () => {
                       </div>
                     </div>
 
-                    <Button onClick={handleRSVPSubmit} className="w-full" variant="hero">
+                    <Button onClick={handleRSVPSubmit} className="w-full" variant="hero" disabled={!formData.name || !formData.email}>
                       Complete Free RSVP
                     </Button>
                   </div>

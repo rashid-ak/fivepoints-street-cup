@@ -40,13 +40,12 @@ serve(async (req) => {
         captain_name: teamData.captainName,
         captain_email: teamData.captainEmail,
         captain_phone: teamData.captainPhone,
-        player2_name: teamData.player2,
-        player3_name: teamData.player3,
-        player4_name: teamData.player4,
+        players: teamData.players.filter((player: string) => player.trim() !== ''),
         skill_level: teamData.skillLevel,
         rules_acknowledged: teamData.rulesAcknowledged,
         media_release: teamData.mediaRelease,
-        payment_status: 'pending'
+        payment_status: 'unpaid',
+        amount: 7500
       })
       .select()
       .single();
@@ -85,13 +84,13 @@ serve(async (req) => {
               name: "5 Points Cup Tournament Entry",
               description: `Team: ${teamData.teamName} (${teamData.skillLevel})` 
             },
-            unit_amount: 10000, // $100.00 in cents
+            unit_amount: 7500, // $75.00 in cents
           },
           quantity: 1,
         },
       ],
       mode: "payment",
-      success_url: `${req.headers.get("origin")}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${req.headers.get("origin")}/success?type=team`,
       cancel_url: `${req.headers.get("origin")}/registration`,
       metadata: {
         team_id: team.id,
