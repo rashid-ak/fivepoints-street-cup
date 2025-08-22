@@ -75,7 +75,23 @@ const PartnersSection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {partners.map((partner, index) => (
               <div key={index} className="text-center p-6 bg-gradient-card rounded-lg group hover:shadow-glow transition-all duration-300">
-                {partner.name === "Akanni Marketing" ? (
+                {partner.name === "Underground Atlanta" ? (
+                  <a 
+                    href="https://www.undergroundatl.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-4 group-hover:scale-105 transition-transform">
+                      <img 
+                        src="/lovable-uploads/079a9a2d-bab0-424c-93f5-c3f8509f98e5.png" 
+                        alt="Underground Atlanta logo"
+                        className="w-full h-full object-contain cursor-pointer"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer">{partner.name}</h3>
+                  </a>
+                ) : partner.name === "Akanni Marketing" ? (
                   <a 
                     href="https://akanni.marketing" 
                     target="_blank" 
