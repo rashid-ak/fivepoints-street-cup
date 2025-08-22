@@ -125,21 +125,6 @@ const GallerySlideshow = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
-                
-                {/* Category Badge */}
-                <div className="absolute top-6 left-6">
-                  <Badge variant="secondary" className="text-base font-bold bg-background/80 backdrop-blur-sm px-4 py-2">
-                    {currentItem.category}
-                  </Badge>
-                </div>
-
-                {/* Date */}
-                <div className="absolute top-6 right-6">
-                  <div className="flex items-center gap-2 text-base text-muted-foreground bg-background/80 backdrop-blur-sm px-4 py-2 rounded">
-                    <Calendar className="w-4 h-4" />
-                    {currentItem.date}
-                  </div>
-                </div>
               </div>
 
               {/* Content */}
@@ -147,15 +132,9 @@ const GallerySlideshow = () => {
                 <h3 className="text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                   {currentItem.title}
                 </h3>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                <p className="text-muted-foreground text-lg leading-relaxed">
                   {currentItem.description}
                 </p>
-                
-                {/* Location indicator */}
-                <div className="flex items-center gap-3 text-base text-energy">
-                  <MapPin className="w-5 h-5" />
-                  <span className="font-medium">Underground Atlanta</span>
-                </div>
               </div>
             </CardContent>
           </Card>
