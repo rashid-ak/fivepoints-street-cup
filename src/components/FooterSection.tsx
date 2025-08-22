@@ -3,15 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
-
 const FooterSection = () => {
   const backgroundConfig = getSectionBackground('footer');
-  
-  return (
-    <BackgroundSection 
-      {...backgroundConfig}
-      className="bg-card border-t border-border"
-    >
+  return <BackgroundSection {...backgroundConfig} className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
           {/* Main Footer Content */}
@@ -90,41 +84,7 @@ const FooterSection = () => {
           <Separator className="mb-8" />
 
           {/* Partners Logos */}
-          <div className="mb-8">
-            <h4 className="font-bold text-foreground text-center mb-6">Our Partners</h4>
-            <div className="flex flex-wrap justify-center items-center gap-8 text-muted-foreground">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-bold text-primary">UA</span>
-                </div>
-                <span className="text-xs">Underground Atlanta</span>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-bold text-accent">BD</span>
-                </div>
-                <span className="text-xs">BnDorsed</span>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-energy/10 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-bold text-energy">MF</span>
-                </div>
-                <span className="text-xs">MIFLAND</span>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-bold text-primary">AM</span>
-                </div>
-                <span className="text-xs">Akanni Marketing</span>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-bold text-accent">KI</span>
-                </div>
-                <span className="text-xs">KickIt</span>
-              </div>
-            </div>
-          </div>
+          
 
           <Separator className="mb-6" />
 
@@ -142,8 +102,6 @@ const FooterSection = () => {
           </div>
         </div>
       </div>
-    </BackgroundSection>
-  );
+    </BackgroundSection>;
 };
-
 export default FooterSection;
