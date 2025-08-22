@@ -49,7 +49,7 @@ const NavigationBar = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
+                className="text-white hover:text-primary transition-colors font-medium"
               >
                 {item.name}
               </button>
@@ -94,7 +94,7 @@ const NavigationBar = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-primary transition-colors font-medium"
+                  className="block w-full text-left px-3 py-2 text-white hover:text-primary transition-colors font-medium"
                 >
                   {item.name}
                 </button>

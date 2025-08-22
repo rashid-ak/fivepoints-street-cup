@@ -42,7 +42,7 @@ const HeroSection = () => {
           </div>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white max-w-3xl mx-auto">
             3v3 Futsal at Underground Atlanta
           </p>
 
@@ -57,7 +57,7 @@ const HeroSection = () => {
           </p>
 
           {/* Key Details */}
-          <div className="flex flex-wrap justify-center gap-6 text-muted-foreground">
+          <div className="flex flex-wrap justify-center gap-6 text-white">
             <div className="flex items-center gap-2">
               <Users className="w-5 h-5 text-primary" />
               <span className="font-medium">3v3 futsal • 16 teams</span>
