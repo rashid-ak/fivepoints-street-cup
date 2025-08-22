@@ -4,7 +4,7 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "Is the 5 Points Cup all-ages?",
-      answer: "Yes! The 5 Points Cup welcomes players and spectators of all ages. Teams can have players of any age, and the event is designed to be family-friendly with activities for everyone."
+      answer: "Everyone of all ages are welcomed to spectate and enjoy the event! However, the teams will be participating in a men's competition. The event is designed to be family-friendly with activities for spectators of all ages."
     },
     {
       question: "What is the tournament format?",
