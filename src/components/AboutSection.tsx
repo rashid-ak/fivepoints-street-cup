@@ -18,7 +18,10 @@ const AboutSection = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-hero mx-auto mb-8" />
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Soccer needs only a ball and people. The 5 Points Cup brings Atlanta the pure essence of the game at historic Underground Atlanta. This kickoff event leads into a series building toward World Cup 2026.
+              The 5 Points Cup is a 3v3 futsal tournament created to bring the pure essence of soccer to the heart of Atlanta in a unique way. Soccer has always been the world's most accessible sport — all you need is a ball and people — and this event celebrates that simplicity while highlighting the city's culture, creativity, and community.
+            </p>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mt-6">
+              The tournament will be hosted at Underground Atlanta. Alongside the tournament there will be a watch party for two highly anticipated matches, Chelsea vs Manchester United @ 10:00 AM & Atlanta United vs San Diego FC @ 4:30 PM.
             </p>
           </div>
         </div>
