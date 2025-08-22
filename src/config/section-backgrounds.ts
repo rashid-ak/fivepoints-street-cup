@@ -4,8 +4,8 @@
 
 export const sectionBackgrounds = {
   hero: {
-    backgroundImage: "/lovable-uploads/e574c182-7471-4093-ba8d-82e81d9c8596.png",
-    backgroundAlt: "Futsal tournament at Underground Atlanta with city skyline",
+    backgroundImage: "/lovable-uploads/befc3630-9aab-4d1b-826c-65f8a757f443.png",
+    backgroundAlt: "Player in action at Underground Atlanta futsal court",
     overlayOpacity: 0.6
   },
   about: {
