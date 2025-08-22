@@ -129,7 +129,7 @@ const Registration = () => {
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-accent" />
-                        4 players max (3 starters + 1 sub)
+                        6 players max (3 starters + 1 sub)
                       </li>
                       <li className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-accent" />
