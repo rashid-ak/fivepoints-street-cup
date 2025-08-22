@@ -19,13 +19,6 @@ const ScheduleSection = () => {
       icon: "🏆"
     },
     {
-      time: "4:00 PM - 4:30 PM",
-      title: "Prize Reveal",
-      subtitle: "Champions Ceremony",
-      type: "ceremony",
-      icon: "🎉"
-    },
-    {
       time: "4:30 PM - 6:30 PM",
       title: "Atlanta United vs San Diego FC",
       subtitle: "Big Screen Watch Party",
@@ -144,21 +137,6 @@ END:VCALENDAR`;
             </div>
           </div>
 
-          {/* Additional Activities */}
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            <div className="text-center p-6 bg-gradient-card rounded-lg">
-              <h4 className="font-bold text-accent mb-2">Freestyle Tournament</h4>
-              <p className="text-sm text-muted-foreground">Hosted by MIFLAND</p>
-            </div>
-            <div className="text-center p-6 bg-gradient-card rounded-lg">
-              <h4 className="font-bold text-energy mb-2">Retail Pop-ups</h4>
-              <p className="text-sm text-muted-foreground">Local vendor showcase</p>
-            </div>
-            <div className="text-center p-6 bg-gradient-card rounded-lg">
-              <h4 className="font-bold text-primary mb-2">Food & Music</h4>
-              <p className="text-sm text-muted-foreground">Food trucks & live DJs</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -3,6 +3,10 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users } from "lucide-react";
 
 const HeroSection = () => {
+  const handleGetDirections = () => {
+    window.open('https://maps.google.com/?q=Underground+Atlanta,+Upper+Alabama+St,+Atlanta,+GA', '_blank');
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -46,14 +50,14 @@ const HeroSection = () => {
 
           {/* Tagline */}
           <p className="text-lg md:text-xl text-primary font-semibold">
-            "Street football in the heart of the city."
+            "Fast matches. Big energy. All in the heart of the city."
           </p>
 
           {/* Key Details */}
           <div className="flex flex-wrap justify-center gap-6 text-muted-foreground">
             <div className="flex items-center gap-2">
               <Users className="w-5 h-5 text-primary" />
-              <span className="font-medium">First to 5 wins</span>
+              <span className="font-medium">3v3 futsal • 16 teams</span>
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-accent" />
@@ -61,7 +65,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-energy" />
-              <span className="font-medium">5 Points MARTA</span>
+              <span className="font-medium">All ages • Free admission</span>
             </div>
           </div>
 
@@ -77,10 +81,20 @@ const HeroSection = () => {
 
           {/* Location Callout */}
           <div className="pt-8 max-w-2xl mx-auto">
-            <p className="text-sm text-muted-foreground font-medium">
-              Underground Atlanta — Upper Alabama St. <br />
-              Across from 5 Points MARTA Station. Central. Connected. Neutral ground.
-            </p>
+            <div className="inline-flex items-center gap-2 bg-card/20 backdrop-blur-sm px-4 py-2 rounded-full border border-border">
+              <MapPin className="w-4 h-4 text-energy" />
+              <span className="text-sm text-foreground font-medium">
+                Upper Alabama St — across from 5 Points MARTA
+              </span>
+            </div>
+            <div className="mt-4">
+              <button 
+                onClick={handleGetDirections}
+                className="text-sm text-primary hover:text-accent transition-colors underline"
+              >
+                Get Directions
+              </button>
+            </div>
           </div>
         </div>
       </div>
