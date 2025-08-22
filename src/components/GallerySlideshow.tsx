@@ -107,9 +107,11 @@ const GallerySlideshow = () => {
 
               {/* Content */}
               <div className="p-8 bg-background/80 backdrop-blur-sm">
-                <h3 className="text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                  In-Game play
-                </h3>
+                <img 
+                  src="/lovable-uploads/a31225d7-44b0-4fa9-8b72-47ced129a51e.png" 
+                  alt="5 Points Cup Logo" 
+                  className="h-12 md:h-16 w-auto mb-4 group-hover:opacity-80 transition-opacity"
+                />
                 
                 
                 {/* Location indicator */}
