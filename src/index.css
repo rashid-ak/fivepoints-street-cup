@@ -18,36 +18,36 @@ All colors MUST be HSL.
     --popover: 220 15% 8%;
     --popover-foreground: 0 0% 98%;
 
-    /* Bold Athletic Primary - Electric Blue */
-    --primary: 210 100% 55%;
-    --primary-foreground: 220 15% 6%;
+    /* Primary - Vibrant Blue */
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 98%;
 
-    /* Secondary - Urban Gray */
-    --secondary: 220 10% 15%;
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary - Energetic Yellow */
+    --secondary: 48 100% 50%;
+    --secondary-foreground: 220 15% 6%;
 
     --muted: 220 10% 12%;
     --muted-foreground: 220 5% 65%;
 
-    /* Accent - Neon Green for highlights */
-    --accent: 120 100% 50%;
-    --accent-foreground: 220 15% 6%;
+    /* Accent - Electric Orange */
+    --accent: 25 100% 55%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 10% 20%;
     --input: 220 10% 15%;
-    --ring: 210 100% 55%;
+    --ring: 220 100% 50%;
 
     /* Energy Accent Colors */
-    --energy: 45 100% 50%;
-    --energy-foreground: 220 15% 6%;
+    --energy: 25 100% 55%;
+    --energy-foreground: 0 0% 98%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    /* Gradients using new color palette */
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 50%) 0%, hsl(48 100% 50%) 50%, hsl(25 100% 55%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(220 15% 10%) 100%);
-    --gradient-cta: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(150 100% 45%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(25 100% 55%) 0%, hsl(48 100% 50%) 100%);
     
     /* Shadows */
     --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
