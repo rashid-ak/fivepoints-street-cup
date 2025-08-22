@@ -36,7 +36,9 @@ const BackgroundSection = ({
       
       {/* Content */}
       <div className="relative z-10">
-        {children}
+        <div className="[&_h1]:text-shadow-lg [&_h2]:text-shadow-lg [&_h3]:text-shadow-lg [&_p]:text-shadow-md [&_.badge]:backdrop-blur-sm [&_.badge]:bg-background/20 [&_.card]:backdrop-blur-sm [&_.card]:bg-background/10">
+          {children}
+        </div>
       </div>
     </div>
   );
