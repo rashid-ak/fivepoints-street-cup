@@ -1,8 +1,12 @@
 import { Clock, MapPin, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import BackgroundSection from "@/components/ui/background-section";
+import { getSectionBackground } from "@/config/section-backgrounds";
 
 const ScheduleSection = () => {
+  const backgroundConfig = getSectionBackground('schedule');
+  
   const scheduleItems = [
     {
       time: "10:00 AM - 12:00 PM",
@@ -60,7 +64,10 @@ END:VCALENDAR`;
   };
 
   return (
-    <section id="schedule" className="py-20 bg-card">
+    <BackgroundSection 
+      {...backgroundConfig}
+      className="py-20 bg-card"
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
@@ -139,7 +146,7 @@ END:VCALENDAR`;
 
         </div>
       </div>
-    </section>
+    </BackgroundSection>
   );
 };
 

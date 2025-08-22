@@ -1,10 +1,17 @@
 import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import BackgroundSection from "@/components/ui/background-section";
+import { getSectionBackground } from "@/config/section-backgrounds";
 
 const FooterSection = () => {
+  const backgroundConfig = getSectionBackground('footer');
+  
   return (
-    <footer className="bg-card border-t border-border">
+    <BackgroundSection 
+      {...backgroundConfig}
+      className="bg-card border-t border-border"
+    >
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
           {/* Main Footer Content */}
@@ -135,7 +142,7 @@ const FooterSection = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </BackgroundSection>
   );
 };
 

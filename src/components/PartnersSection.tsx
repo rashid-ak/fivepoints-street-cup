@@ -1,7 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Music, ShoppingBag, Users } from "lucide-react";
+import BackgroundSection from "@/components/ui/background-section";
+import { getSectionBackground } from "@/config/section-backgrounds";
 
 const PartnersSection = () => {
+  const backgroundConfig = getSectionBackground('partners');
+  
   const partners = [
     {
       name: "Underground Atlanta",
@@ -53,7 +57,10 @@ const PartnersSection = () => {
   ];
 
   return (
-    <section id="partners" className="py-20 bg-background">
+    <BackgroundSection 
+      {...backgroundConfig}
+      className="py-20 bg-background"
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -79,7 +86,7 @@ const PartnersSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </BackgroundSection>
   );
 };
 

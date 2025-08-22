@@ -9,34 +9,34 @@ export const sectionBackgrounds = {
     overlayOpacity: 0.6
   },
   about: {
-    backgroundImage: undefined, // Add image path here to enable background
-    backgroundAlt: "About section background",
-    overlayOpacity: 0.8
+    backgroundImage: "/lovable-uploads/7819dfd3-f6af-406e-887f-85ec0cbcce27.png",
+    backgroundAlt: "Players and spectators at futsal court with Atlanta skyline",
+    overlayOpacity: 0.85
   },
   rules: {
-    backgroundImage: undefined, // Add image path here to enable background
-    backgroundAlt: "Tournament rules background", 
-    overlayOpacity: 0.8
+    backgroundImage: "/lovable-uploads/0d09f1f6-3d40-42c5-a715-be70d6d84171.png",
+    backgroundAlt: "Action shot of players competing on futsal court",
+    overlayOpacity: 0.85
   },
   schedule: {
-    backgroundImage: undefined, // Add image path here to enable background
-    backgroundAlt: "Event schedule background",
-    overlayOpacity: 0.8
+    backgroundImage: "/lovable-uploads/b01a2a2a-fa1c-4b0a-9c78-86c4ed26d0c7.png",
+    backgroundAlt: "Close-up of soccer cleats and ball on court surface",
+    overlayOpacity: 0.85
   },
   gallery: {
-    backgroundImage: undefined, // Add image path here to enable background
-    backgroundAlt: "Gallery section background",
-    overlayOpacity: 0.8
+    backgroundImage: "/lovable-uploads/ed3a79cb-67b1-490f-87e3-c9a37e0913c0.png",
+    backgroundAlt: "Players in action during futsal game at Underground Atlanta",
+    overlayOpacity: 0.85
   },
   partners: {
-    backgroundImage: undefined, // Add image path here to enable background
-    backgroundAlt: "Partners section background",
-    overlayOpacity: 0.8
+    backgroundImage: "/lovable-uploads/7819dfd3-f6af-406e-887f-85ec0cbcce27.png",
+    backgroundAlt: "Tournament atmosphere with players and Atlanta city backdrop",
+    overlayOpacity: 0.9
   },
   footer: {
-    backgroundImage: undefined, // Add image path here to enable background
-    backgroundAlt: "Footer section background",
-    overlayOpacity: 0.8
+    backgroundImage: "/lovable-uploads/0d09f1f6-3d40-42c5-a715-be70d6d84171.png",
+    backgroundAlt: "Futsal court action with Underground Atlanta branding",
+    overlayOpacity: 0.9
   }
 };
 

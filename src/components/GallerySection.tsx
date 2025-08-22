@@ -1,8 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Camera, MapPin, Calendar } from "lucide-react";
+import BackgroundSection from "@/components/ui/background-section";
+import { getSectionBackground } from "@/config/section-backgrounds";
 
 const GallerySection = () => {
+  const backgroundConfig = getSectionBackground('gallery');
+  
   // Placeholder gallery items - in a real app these would come from a database
   const galleryItems = [
     {
@@ -50,7 +54,10 @@ const GallerySection = () => {
   ];
 
   return (
-    <section id="gallery" className="py-24 bg-background">
+    <BackgroundSection 
+      {...backgroundConfig}
+      className="py-24 bg-background"
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -127,7 +134,7 @@ const GallerySection = () => {
           </Badge>
         </div>
       </div>
-    </section>
+    </BackgroundSection>
   );
 };
 
