@@ -33,16 +33,13 @@ const GallerySection = () => {
         {/* Gallery Slideshow */}
         <GallerySlideshow />
 
-        {/* Call to Action */}
+        {/* 5 Points Cup Logo */}
         <div className="text-center mt-16">
-          <div className="bg-background/20 backdrop-blur-sm rounded-xl p-6 inline-block">
-            <p className="text-muted-foreground mb-4">
-              Want to share your tournament photos?
-            </p>
-            <Badge variant="outline" className="text-sm font-bold border-accent text-accent cursor-pointer hover:bg-accent/10 transition-colors bg-background/20 backdrop-blur-sm">
-              #5PointsCup
-            </Badge>
-          </div>
+          <img 
+            src="/lovable-uploads/25e54c13-7f5d-458d-8d27-12a8912e3af6.png" 
+            alt="5 Points Cup Logo"
+            className="mx-auto h-16 object-contain"
+          />
         </div>
       </div>
     </BackgroundSection>

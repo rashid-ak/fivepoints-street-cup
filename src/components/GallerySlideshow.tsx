@@ -132,9 +132,15 @@ const GallerySlideshow = () => {
                 <h3 className="text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                   {currentItem.title}
                 </h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                   {currentItem.description}
                 </p>
+                
+                {/* Location indicator */}
+                <div className="flex items-center gap-3 text-base text-energy">
+                  <MapPin className="w-5 h-5" />
+                  <span className="font-medium">Underground Atlanta</span>
+                </div>
               </div>
             </CardContent>
           </Card>
