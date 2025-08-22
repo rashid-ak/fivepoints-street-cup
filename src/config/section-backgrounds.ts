@@ -4,8 +4,8 @@
 
 export const sectionBackgrounds = {
   hero: {
-    backgroundImage: "/lovable-uploads/0cd4d024-4bce-4fe0-8b10-377c28ded7e1.png",
-    backgroundAlt: "5 Points Cup tournament logo with colorful geometric design",
+    backgroundImage: "/lovable-uploads/e574c182-7471-4093-ba8d-82e81d9c8596.png",
+    backgroundAlt: "Futsal tournament at Underground Atlanta with city skyline",
     overlayOpacity: 0.6
   },
   about: {
@@ -29,8 +29,8 @@ export const sectionBackgrounds = {
     overlayOpacity: 0.85
   },
   partners: {
-    backgroundImage: "/lovable-uploads/7819dfd3-f6af-406e-887f-85ec0cbcce27.png",
-    backgroundAlt: "Tournament atmosphere with players and Atlanta city backdrop",
+    backgroundImage: "/lovable-uploads/0cd4d024-4bce-4fe0-8b10-377c28ded7e1.png",
+    backgroundAlt: "5 Points Cup tournament logo with colorful geometric design",
     overlayOpacity: 0.9
   },
   footer: {
