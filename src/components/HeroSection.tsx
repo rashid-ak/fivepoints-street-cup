@@ -35,7 +35,7 @@ const HeroSection = () => {
           {/* Main Headline */}
           <div className="flex justify-center">
             <img 
-              src="/lovable-uploads/e59b8e51-2bbf-44f5-8e46-26e21db7aaf7.png" 
+              src="/lovable-uploads/a31225d7-44b0-4fa9-8b72-47ced129a51e.png" 
               alt="5 Points Cup Logo" 
               className="h-32 md:h-48 lg:h-56 w-auto object-contain"
             />
