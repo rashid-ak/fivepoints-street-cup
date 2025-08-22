@@ -107,17 +107,16 @@ const GallerySlideshow = () => {
 
               {/* Content */}
               <div className="p-8 bg-background/80 backdrop-blur-sm">
-                <img 
-                  src="/lovable-uploads/a31225d7-44b0-4fa9-8b72-47ced129a51e.png" 
-                  alt="5 Points Cup Logo" 
-                  className="h-12 md:h-16 w-auto mb-4 group-hover:opacity-80 transition-opacity"
-                />
-                
-                
-                {/* Location indicator */}
-                <div className="flex items-center gap-3 text-base text-energy">
-                  <MapPin className="w-5 h-5" />
-                  <span className="font-medium">Underground Atlanta</span>
+                <div className="flex items-center justify-center gap-6 mb-4">
+                  <img 
+                    src="/lovable-uploads/a31225d7-44b0-4fa9-8b72-47ced129a51e.png" 
+                    alt="5 Points Cup Logo" 
+                    className="h-12 md:h-16 w-auto group-hover:opacity-80 transition-opacity"
+                  />
+                  <div className="flex items-center gap-3 text-base text-energy">
+                    <MapPin className="w-5 h-5" />
+                    <span className="font-medium">Underground Atlanta</span>
+                  </div>
                 </div>
               </div>
             </CardContent>
