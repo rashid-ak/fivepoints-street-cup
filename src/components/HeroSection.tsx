@@ -14,13 +14,9 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <Badge variant="secondary" className="text-sm font-bold">
-              FREE ADMISSION
-            </Badge>
             
-            <Badge variant="outline" className="text-sm font-bold border-energy text-energy">
-              SEPTEMBER 20
-            </Badge>
+            
+            
           </div>
 
           {/* Main Headline */}
