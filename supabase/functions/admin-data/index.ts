@@ -25,11 +25,12 @@ serve(async (req) => {
       { auth: { persistSession: false } }
     );
 
+    const body = req.method === "POST" ? await req.json() : {};
     const url = new URL(req.url);
-    const action = url.searchParams.get("action");
-    const table = url.searchParams.get("table");
+    const action = url.searchParams.get("action") || body.action;
+    const table = url.searchParams.get("table") || body.table;
 
-    logStep("Request details", { action, table });
+    logStep("Request details", { action, table, method: req.method });
 
     if (req.method === "GET") {
       if (table === "teams") {
@@ -79,7 +80,7 @@ serve(async (req) => {
     }
 
     if (req.method === "POST" && action === "update-team-status") {
-      const { teamId, paymentStatus } = await req.json();
+      const { teamId, paymentStatus } = body;
       
       const { data, error } = await supabaseClient
         .from("teams")
@@ -98,7 +99,7 @@ serve(async (req) => {
     }
 
     if (req.method === "POST" && action === "update-settings") {
-      const settings = await req.json();
+      const settings = body;
       
       const { data, error } = await supabaseClient
         .from("admin_settings")
