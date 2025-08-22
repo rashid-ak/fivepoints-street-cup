@@ -33,12 +33,13 @@ const HeroSection = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight">
-            <span className="block text-foreground">5 POINTS</span>
-            <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              CUP
-            </span>
-          </h1>
+          <div className="flex justify-center">
+            <img 
+              src="/lovable-uploads/e59b8e51-2bbf-44f5-8e46-26e21db7aaf7.png" 
+              alt="5 Points Cup Logo" 
+              className="h-32 md:h-48 lg:h-56 w-auto object-contain"
+            />
+          </div>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl lg:text-3xl font-bold text-muted-foreground max-w-3xl mx-auto">
