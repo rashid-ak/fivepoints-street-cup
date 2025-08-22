@@ -1,21 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users } from "lucide-react";
-
 const HeroSection = () => {
   const handleGetDirections = () => {
     window.open('https://maps.google.com/?q=Underground+Atlanta,+Upper+Alabama+St,+Atlanta,+GA', '_blank');
   };
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/lovable-uploads/0cd4d024-4bce-4fe0-8b10-377c28ded7e1.png" 
-          alt="5 Points Cup tournament logo with colorful geometric design"
-          className="w-full h-full object-cover"
-        />
+        <img src="/lovable-uploads/0cd4d024-4bce-4fe0-8b10-377c28ded7e1.png" alt="5 Points Cup tournament logo with colorful geometric design" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/60" />
       </div>
 
@@ -49,7 +42,7 @@ const HeroSection = () => {
           </p>
 
           {/* Tagline */}
-          <p className="text-lg md:text-xl text-primary font-semibold">
+          <p className="text-lg md:text-xl font-semibold text-orange-500">
             "Fast matches. Big energy. All in the heart of the city."
           </p>
 
@@ -65,7 +58,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-energy" />
-              <span className="font-medium">All ages • Free admission</span>
+              <span className="font-medium"> Free admission</span>
             </div>
           </div>
 
@@ -88,10 +81,7 @@ const HeroSection = () => {
               </span>
             </div>
             <div className="mt-4">
-              <button 
-                onClick={handleGetDirections}
-                className="text-sm text-primary hover:text-accent transition-colors underline"
-              >
+              <button onClick={handleGetDirections} className="text-sm text-primary hover:text-accent transition-colors underline">
                 Get Directions
               </button>
             </div>
@@ -105,8 +95,6 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-energy-bounce" />
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
