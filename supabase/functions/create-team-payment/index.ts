@@ -45,7 +45,7 @@ serve(async (req) => {
         rules_acknowledged: teamData.rulesAcknowledged,
         media_release: teamData.mediaRelease,
         payment_status: 'unpaid',
-        amount: 7500
+        amount: 10000
       })
       .select()
       .single();
@@ -84,7 +84,7 @@ serve(async (req) => {
               name: "5 Points Cup Tournament Entry",
               description: `Team: ${teamData.teamName} (${teamData.skillLevel})` 
             },
-            unit_amount: 7500, // $75.00 in cents
+            unit_amount: 10000, // $100.00 in cents
           },
           quantity: 1,
         },

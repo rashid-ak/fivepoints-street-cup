@@ -123,7 +123,7 @@ const Registration = () => {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="text-center">
-                      <div className="text-3xl font-black text-primary mb-2">$75</div>
+                      <div className="text-3xl font-black text-primary mb-2">$100</div>
                       <p className="text-sm text-muted-foreground">Entry fee per team</p>
                     </div>
                     
@@ -336,10 +336,10 @@ const Registration = () => {
                     </div>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-muted-foreground">Team Entry Fee</span>
-                      <span className="text-2xl font-bold text-foreground">$75.00</span>
+                      <span className="text-2xl font-bold text-foreground">$100.00</span>
                     </div>
                     <Button onClick={handleTeamSubmit} className="w-full" variant="cta" disabled={!formData.rulesAcknowledged || !formData.mediaRelease || !formData.teamName || !formData.captainName || !formData.captainEmail || !formData.captainPhone || !formData.skillLevel}>
-                      Proceed to Payment ($75.00)
+                      Proceed to Payment ($100.00)
                     </Button>
                   </div>
                 </> : <>
