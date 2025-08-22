@@ -67,6 +67,7 @@ END:VCALENDAR`;
     <BackgroundSection 
       {...backgroundConfig}
       className="py-20 bg-card"
+      id="schedule"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">

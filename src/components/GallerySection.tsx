@@ -5,7 +5,7 @@ import { getSectionBackground } from "@/config/section-backgrounds";
 import GallerySlideshow from "./GallerySlideshow";
 const GallerySection = () => {
   const backgroundConfig = getSectionBackground('gallery');
-  return <BackgroundSection {...backgroundConfig} className="py-24 bg-background">
+  return <BackgroundSection {...backgroundConfig} className="py-24 bg-background" id="gallery">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">

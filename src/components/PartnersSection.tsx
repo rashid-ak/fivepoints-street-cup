@@ -60,6 +60,7 @@ const PartnersSection = () => {
     <BackgroundSection 
       {...backgroundConfig}
       className="py-20 bg-background"
+      id="partners"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">

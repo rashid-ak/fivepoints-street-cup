@@ -6,6 +6,7 @@ interface BackgroundSectionProps {
   backgroundAlt?: string;
   overlayOpacity?: number;
   className?: string;
+  id?: string;
 }
 
 const BackgroundSection = ({ 
@@ -13,14 +14,15 @@ const BackgroundSection = ({
   backgroundImage, 
   backgroundAlt = "",
   overlayOpacity = 0.7,
-  className = "" 
+  className = "",
+  id
 }: BackgroundSectionProps) => {
   if (!backgroundImage) {
-    return <div className={className}>{children}</div>;
+    return <div className={className} id={id}>{children}</div>;
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} id={id}>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
