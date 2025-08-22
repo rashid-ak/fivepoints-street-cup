@@ -43,17 +43,10 @@ const GallerySlideshow = () => {
     }
   ];
 
-  const itemsPerSlide = 3;
-  const totalSlides = Math.ceil(galleryItems.length / itemsPerSlide);
+  const itemsPerSlide = 1; // Show one large image at a time
+  const totalSlides = galleryItems.length;
 
-  // Auto-advance slides every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [totalSlides]);
+  // Removed auto-advance functionality
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -64,61 +57,60 @@ const GallerySlideshow = () => {
   };
 
   const getCurrentSlideItems = () => {
-    const startIndex = currentSlide * itemsPerSlide;
-    return galleryItems.slice(startIndex, startIndex + itemsPerSlide);
+    return [galleryItems[currentSlide]];
   };
+
+  const currentItem = galleryItems[currentSlide];
 
   return (
     <div className="relative">
-      {/* Slideshow Container */}
+      {/* Single Large Image Display */}
       <div className="overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {getCurrentSlideItems().map((item) => (
-            <Card key={item.id} className="group hover:shadow-glow transition-all duration-300 overflow-hidden bg-background/10 backdrop-blur-sm">
-              <CardContent className="p-0">
-                {/* Image */}
-                <div className="aspect-video relative overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.description}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4">
-                    <Badge variant="secondary" className="text-xs font-bold bg-background/80 backdrop-blur-sm">
-                      {item.category}
-                    </Badge>
-                  </div>
-
-                  {/* Date */}
-                  <div className="absolute top-4 right-4">
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 rounded">
-                      <Calendar className="w-3 h-3" />
-                      {item.date}
-                    </div>
-                  </div>
+        <div className="flex justify-center">
+          <Card className="group hover:shadow-glow transition-all duration-300 overflow-hidden bg-background/10 backdrop-blur-sm max-w-4xl w-full">
+            <CardContent className="p-0">
+              {/* Large Image */}
+              <div className="aspect-[16/10] relative overflow-hidden">
+                <img 
+                  src={currentItem.image} 
+                  alt={currentItem.description}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+                
+                {/* Category Badge */}
+                <div className="absolute top-6 left-6">
+                  <Badge variant="secondary" className="text-base font-bold bg-background/80 backdrop-blur-sm px-4 py-2">
+                    {currentItem.category}
+                  </Badge>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 bg-background/80 backdrop-blur-sm">
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {item.description}
-                  </p>
-                  
-                  {/* Location indicator */}
-                  <div className="flex items-center gap-2 text-xs text-energy">
-                    <MapPin className="w-3 h-3" />
-                    <span className="font-medium">Underground Atlanta</span>
+                {/* Date */}
+                <div className="absolute top-6 right-6">
+                  <div className="flex items-center gap-2 text-base text-muted-foreground bg-background/80 backdrop-blur-sm px-4 py-2 rounded">
+                    <Calendar className="w-4 h-4" />
+                    {currentItem.date}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+
+              {/* Content */}
+              <div className="p-8 bg-background/80 backdrop-blur-sm">
+                <h3 className="text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  {currentItem.title}
+                </h3>
+                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                  {currentItem.description}
+                </p>
+                
+                {/* Location indicator */}
+                <div className="flex items-center gap-3 text-base text-energy">
+                  <MapPin className="w-5 h-5" />
+                  <span className="font-medium">Underground Atlanta</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
@@ -158,12 +150,7 @@ const GallerySlideshow = () => {
         </Button>
       </div>
 
-      {/* Auto-play indicator */}
-      <div className="text-center mt-4">
-        <p className="text-xs text-muted-foreground bg-background/50 backdrop-blur-sm px-3 py-1 rounded-full inline-block">
-          Auto-advancing every 5 seconds
-        </p>
-      </div>
+      {/* Removed auto-play indicator since auto-advance is disabled */}
     </div>
   );
 };
