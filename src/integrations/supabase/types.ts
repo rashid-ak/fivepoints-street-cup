@@ -14,7 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      rsvps: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          party_size: number | null
+          zip_code: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          party_size?: number | null
+          zip_code?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          party_size?: number | null
+          zip_code?: string | null
+        }
+        Relationships: []
+      }
+      teams: {
+        Row: {
+          amount: number | null
+          captain_email: string
+          captain_name: string
+          captain_phone: string
+          created_at: string
+          id: string
+          media_release: boolean
+          payment_status: string | null
+          player2_name: string | null
+          player3_name: string | null
+          player4_name: string | null
+          rules_acknowledged: boolean
+          skill_level: string
+          stripe_session_id: string | null
+          team_name: string
+          updated_at: string
+        }
+        Insert: {
+          amount?: number | null
+          captain_email: string
+          captain_name: string
+          captain_phone: string
+          created_at?: string
+          id?: string
+          media_release?: boolean
+          payment_status?: string | null
+          player2_name?: string | null
+          player3_name?: string | null
+          player4_name?: string | null
+          rules_acknowledged?: boolean
+          skill_level: string
+          stripe_session_id?: string | null
+          team_name: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number | null
+          captain_email?: string
+          captain_name?: string
+          captain_phone?: string
+          created_at?: string
+          id?: string
+          media_release?: boolean
+          payment_status?: string | null
+          player2_name?: string | null
+          player3_name?: string | null
+          player4_name?: string | null
+          rules_acknowledged?: boolean
+          skill_level?: string
+          stripe_session_id?: string | null
+          team_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
