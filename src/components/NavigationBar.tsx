@@ -39,7 +39,7 @@ const NavigationBar = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-xl font-black text-foreground hover:text-primary transition-colors"
             >
-              5 POINTS <span className="text-primary">CUP</span>
+              POINTS <span className="text-primary">CUP</span>
             </button>
           </div>
 
