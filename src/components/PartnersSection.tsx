@@ -91,6 +91,22 @@ const PartnersSection = () => {
                     </div>
                     <h3 className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer">{partner.name}</h3>
                   </a>
+                ) : partner.name === "Kick It" ? (
+                  <a 
+                    href="#" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-4 group-hover:scale-105 transition-transform">
+                      <img 
+                        src="/lovable-uploads/68a9271b-b444-4242-a444-7419feeb9651.png" 
+                        alt="Kick It logo"
+                        className="w-full h-full object-contain cursor-pointer"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer">{partner.name}</h3>
+                  </a>
                 ) : (
                   <>
                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
