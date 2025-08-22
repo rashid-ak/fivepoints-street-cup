@@ -3,8 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
+import { useNavigate } from "react-router-dom";
 const HeroSection = () => {
   const backgroundConfig = getSectionBackground('hero');
+  const navigate = useNavigate();
+  
   const handleGetDirections = () => {
     window.open('https://maps.google.com/?q=Underground+Atlanta,+Upper+Alabama+St,+Atlanta,+GA', '_blank');
   };
@@ -57,10 +60,20 @@ const HeroSection = () => {
 
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <Button variant="hero" size="lg" className="text-xl px-8 py-6 min-w-[200px]">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="text-xl px-8 py-6 min-w-[200px]"
+              onClick={() => navigate('/registration')}
+            >
               RSVP (Free)
             </Button>
-            <Button variant="cta" size="lg" className="min-w-[200px]">
+            <Button 
+              variant="cta" 
+              size="lg" 
+              className="min-w-[200px]"
+              onClick={() => navigate('/registration')}
+            >
               Enter a Team
             </Button>
           </div>
