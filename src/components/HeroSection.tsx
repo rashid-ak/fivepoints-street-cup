@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users } from "lucide-react";
-import heroImage from "@/assets/hero-soccer.jpg";
 
 const HeroSection = () => {
   return (
@@ -9,8 +8,8 @@ const HeroSection = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroImage} 
-          alt="Street soccer tournament action at Underground Atlanta"
+          src="/lovable-uploads/0cd4d024-4bce-4fe0-8b10-377c28ded7e1.png" 
+          alt="5 Points Cup tournament logo with colorful geometric design"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/60" />
