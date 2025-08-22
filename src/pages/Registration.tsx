@@ -328,10 +328,7 @@ const Registration = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="zipCode">Zip Code</Label>
-                        <Input id="zipCode" value={formData.zipCode} onChange={e => handleInputChange('zipCode', e.target.value)} placeholder="30309" />
-                      </div>
+                      
                       <div>
                         <Label htmlFor="partySize">Party Size</Label>
                         <Select value={formData.partySize} onValueChange={value => handleInputChange('partySize', value)}>
