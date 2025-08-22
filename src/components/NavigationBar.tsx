@@ -9,7 +9,6 @@ const NavigationBar = () => {
     { name: "About", href: "#about" },
     { name: "Rules", href: "#rules" },
     { name: "Schedule", href: "#schedule" },
-    { name: "Registration", href: "#registration" },
     { name: "Gallery", href: "#gallery" },
     { name: "Partners", href: "#partners" },
     { name: "FAQ", href: "#faq" },
@@ -59,20 +58,14 @@ const NavigationBar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Button 
               variant="ghost" 
-              onClick={() => {
-                const section = document.getElementById('registration');
-                section?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
               className="font-semibold"
             >
               RSVP Free
             </Button>
             <Button 
               variant="cta" 
-              onClick={() => {
-                const section = document.getElementById('registration');
-                section?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
               className="font-semibold"
             >
               Enter Team
@@ -109,8 +102,7 @@ const NavigationBar = () => {
                   variant="ghost" 
                   className="w-full font-semibold"
                   onClick={() => {
-                    const section = document.getElementById('registration');
-                    section?.scrollIntoView({ behavior: 'smooth' });
+                    window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
                     setIsOpen(false);
                   }}
                 >
@@ -120,8 +112,7 @@ const NavigationBar = () => {
                   variant="cta" 
                   className="w-full font-semibold"
                   onClick={() => {
-                    const section = document.getElementById('registration');
-                    section?.scrollIntoView({ behavior: 'smooth' });
+                    window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
                     setIsOpen(false);
                   }}
                 >

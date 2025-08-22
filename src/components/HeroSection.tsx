@@ -62,10 +62,7 @@ const HeroSection = () => {
               variant="hero" 
               size="lg" 
               className="text-xl px-8 py-6 min-w-[200px]"
-              onClick={() => {
-                const section = document.getElementById('registration');
-                section?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
             >
               RSVP (Free)
             </Button>
@@ -73,10 +70,7 @@ const HeroSection = () => {
               variant="cta" 
               size="lg" 
               className="min-w-[200px]"
-              onClick={() => {
-                const section = document.getElementById('registration');
-                section?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
             >
               Enter a Team
             </Button>

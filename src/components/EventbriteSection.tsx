@@ -1,26 +1,13 @@
 import { Badge } from "@/components/ui/badge";
-import { Users, CreditCard, CheckCircle } from "lucide-react";
+import { Users, CheckCircle } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
 
 const EventbriteSection = () => {
   const backgroundConfig = getSectionBackground('about');
-
-  useEffect(() => {
-    // Load Eventbrite widget script
-    const script = document.createElement('script');
-    script.src = 'https://www.eventbrite.com/static/widgets/eb_widgets.js';
-    script.async = true;
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const handleEventbriteRedirect = () => {
     window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
@@ -134,47 +121,39 @@ const EventbriteSection = () => {
             </Card>
           </div>
 
-          {/* Eventbrite Widget */}
+          {/* Registration CTA */}
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-card p-8 rounded-xl shadow-card">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-black mb-4">Register Now</h3>
-                <p className="text-muted-foreground">
-                  Select your ticket type below. All registrations are processed securely through Eventbrite.
-                </p>
-              </div>
-
-              {/* Eventbrite Embed */}
-              <div className="eventbrite-widget-container">
-                <div 
-                  id="eventbrite-widget-container-1619252671329"
-                  className="min-h-[600px] w-full"
-                >
-                  {/* Eventbrite widget will load here */}
-                  <iframe
-                    src="https://eventbrite.com/tickets-external?eid=1619252671329&ref=etckt"
-                    frameBorder="0"
-                    height="600"
-                    width="100%"
-                    className="rounded-lg"
-                    title="5 Points Cup Registration"
-                  />
-                </div>
-              </div>
-
-              {/* Fallback Button for Mobile */}
-              <div className="text-center mt-8">
-                <p className="text-sm text-muted-foreground mb-4">
-                  Having trouble with the form above?
-                </p>
+            <div className="bg-gradient-card p-8 rounded-xl shadow-card text-center">
+              <h3 className="text-3xl font-black mb-4">Register on Eventbrite</h3>
+              <p className="text-xl text-muted-foreground mb-2">
+                Saturday, September 20
+              </p>
+              <p className="text-lg text-muted-foreground mb-8">
+                Underground Atlanta — Upper Alabama St, across from 5 Points MARTA Station
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="text-xl px-8 py-6 min-w-[200px]"
                   onClick={handleEventbriteRedirect}
-                  variant="outline"
-                  className="min-w-[200px]"
                 >
-                  Register on Eventbrite
+                  RSVP (Free)
+                </Button>
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="min-w-[200px]"
+                  onClick={handleEventbriteRedirect}
+                >
+                  Enter a Team
                 </Button>
               </div>
+              
+              <p className="text-sm text-muted-foreground mt-6">
+                All registration, payment, and confirmation handled securely by Eventbrite
+              </p>
             </div>
           </div>
         </div>
