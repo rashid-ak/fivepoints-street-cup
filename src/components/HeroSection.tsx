@@ -3,19 +3,12 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
-
 const HeroSection = () => {
   const backgroundConfig = getSectionBackground('hero');
-  
   const handleGetDirections = () => {
     window.open('https://maps.google.com/?q=Underground+Atlanta,+Upper+Alabama+St,+Atlanta,+GA', '_blank');
   };
-
-  return (
-    <BackgroundSection 
-      {...backgroundConfig}
-      className="min-h-screen flex items-center justify-center overflow-hidden"
-    >
+  return <BackgroundSection {...backgroundConfig} className="min-h-screen flex items-center justify-center overflow-hidden">
       {/* Content */}
       <div className="container mx-auto px-4 text-center animate-fade-up">
         <div className="max-w-4xl mx-auto space-y-8">
@@ -24,9 +17,7 @@ const HeroSection = () => {
             <Badge variant="secondary" className="text-sm font-bold">
               FREE ADMISSION
             </Badge>
-            <Badge variant="outline" className="text-sm font-bold border-accent text-accent">
-              ALL AGES
-            </Badge>
+            
             <Badge variant="outline" className="text-sm font-bold border-energy text-energy">
               SEPTEMBER 20
             </Badge>
@@ -34,11 +25,7 @@ const HeroSection = () => {
 
           {/* Main Headline */}
           <div className="flex justify-center">
-            <img 
-              src="/lovable-uploads/a31225d7-44b0-4fa9-8b72-47ced129a51e.png" 
-              alt="5 Points Cup Logo" 
-              className="h-32 md:h-48 lg:h-56 w-auto object-contain"
-            />
+            <img src="/lovable-uploads/a31225d7-44b0-4fa9-8b72-47ced129a51e.png" alt="5 Points Cup Logo" className="h-32 md:h-48 lg:h-56 w-auto object-contain" />
           </div>
 
           {/* Subtitle */}
@@ -105,8 +92,6 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-energy-bounce" />
         </div>
       </div>
-    </BackgroundSection>
-  );
+    </BackgroundSection>;
 };
-
 export default HeroSection;
