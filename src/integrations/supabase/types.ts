@@ -14,28 +14,70 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_settings: {
+        Row: {
+          admin_password_hash: string | null
+          created_at: string
+          email_sender_email: string | null
+          email_sender_name: string | null
+          event_date: string | null
+          event_time: string | null
+          id: string
+          stripe_public_key: string | null
+          stripe_secret_key: string | null
+          team_entry_price: number | null
+          updated_at: string
+        }
+        Insert: {
+          admin_password_hash?: string | null
+          created_at?: string
+          email_sender_email?: string | null
+          email_sender_name?: string | null
+          event_date?: string | null
+          event_time?: string | null
+          id?: string
+          stripe_public_key?: string | null
+          stripe_secret_key?: string | null
+          team_entry_price?: number | null
+          updated_at?: string
+        }
+        Update: {
+          admin_password_hash?: string | null
+          created_at?: string
+          email_sender_email?: string | null
+          email_sender_name?: string | null
+          event_date?: string | null
+          event_time?: string | null
+          id?: string
+          stripe_public_key?: string | null
+          stripe_secret_key?: string | null
+          team_entry_price?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       rsvps: {
         Row: {
           created_at: string
           email: string
+          full_name: string
           id: string
-          name: string
           party_size: number | null
           zip_code: string | null
         }
         Insert: {
           created_at?: string
           email: string
+          full_name: string
           id?: string
-          name: string
           party_size?: number | null
           zip_code?: string | null
         }
         Update: {
           created_at?: string
           email?: string
+          full_name?: string
           id?: string
-          name?: string
           party_size?: number | null
           zip_code?: string | null
         }
@@ -51,11 +93,10 @@ export type Database = {
           id: string
           media_release: boolean
           payment_status: string | null
-          player2_name: string | null
-          player3_name: string | null
-          player4_name: string | null
+          players: string[] | null
           rules_acknowledged: boolean
           skill_level: string
+          stripe_payment_intent_id: string | null
           stripe_session_id: string | null
           team_name: string
           updated_at: string
@@ -69,11 +110,10 @@ export type Database = {
           id?: string
           media_release?: boolean
           payment_status?: string | null
-          player2_name?: string | null
-          player3_name?: string | null
-          player4_name?: string | null
+          players?: string[] | null
           rules_acknowledged?: boolean
           skill_level: string
+          stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
           team_name: string
           updated_at?: string
@@ -87,11 +127,10 @@ export type Database = {
           id?: string
           media_release?: boolean
           payment_status?: string | null
-          player2_name?: string | null
-          player3_name?: string | null
-          player4_name?: string | null
+          players?: string[] | null
           rules_acknowledged?: boolean
           skill_level?: string
+          stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
           team_name?: string
           updated_at?: string
