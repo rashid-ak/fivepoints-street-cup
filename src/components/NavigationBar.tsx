@@ -9,6 +9,7 @@ const NavigationBar = () => {
 
   const navItems = [
     { name: "About", href: "#about" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Rules", href: "#rules" },
     { name: "Schedule", href: "#schedule" },
     { name: "Partners", href: "#partners" },
@@ -28,7 +29,12 @@ const NavigationBar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
+            <img 
+              src="/lovable-uploads/e4145787-35ca-4832-9839-e472dd1fdd50.png" 
+              alt="5 Points Cup Logo" 
+              className="w-8 h-8"
+            />
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-xl font-black text-foreground hover:text-primary transition-colors"
