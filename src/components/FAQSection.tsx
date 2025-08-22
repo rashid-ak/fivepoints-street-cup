@@ -23,24 +23,12 @@ const FAQSection = () => {
       answer: "Absolutely! The venue is directly across from 5 Points MARTA Station, one of Atlanta's most connected transit hubs. This makes the location easily accessible from anywhere in the metro area."
     },
     {
-      question: "Is it really free to attend as a spectator?",
-      answer: "Yes, admission is completely free for spectators! We encourage free RSVPs to help us plan for capacity, but there's no cost to come watch the tournament, enjoy the watch parties, food trucks, and other activities."
-    },
-    {
-      question: "What's the rain plan?",
-      answer: "The tournament takes place in Underground Atlanta's covered areas, so weather won't affect the games. All activities are either indoors or in covered spaces, ensuring the event happens rain or shine."
-    },
-    {
       question: "Can teams register the day of the event?",
       answer: "Team registration closes before the event to ensure proper bracket setup and logistics. However, spectator RSVPs are welcome right up until event day. We encourage early team registration to secure your spot."
     },
     {
       question: "What about food and drinks?",
       answer: "Multiple food trucks will be on-site offering diverse dining options. There will also be retail pop-ups and other vendors throughout the venue."
-    },
-    {
-      question: "Is this part of a larger series?",
-      answer: "Yes! The 5 Points Cup is the first in an ongoing series of tournaments leading up to World Cup 2026. This is the start of something bigger for Atlanta's street soccer community."
     }
   ];
 
