@@ -40,6 +40,54 @@ const GallerySlideshow = () => {
       description: "Players in action during futsal game at Underground Atlanta",
       category: "Gameplay",
       date: "Sept 2024"
+    },
+    {
+      id: 5,
+      image: "/lovable-uploads/ce7f690a-6069-4012-99e8-fb9e0767146e.png",
+      title: "Champion Victory",
+      description: "Tournament winner celebrating with trophy at Underground Atlanta",
+      category: "Victory",
+      date: "Sept 2024"
+    },
+    {
+      id: 6,
+      image: "/lovable-uploads/39eec840-e742-450a-9412-b42244424982.png",
+      title: "Team Champions",
+      description: "Winning team celebrating their tournament victory together",
+      category: "Victory",
+      date: "Sept 2024"
+    },
+    {
+      id: 7,
+      image: "/lovable-uploads/a5caa889-5648-491b-b2c9-df05d8675da8.png",
+      title: "Intense Competition",
+      description: "Players battling for ball control during tournament match",
+      category: "Gameplay",
+      date: "Sept 2024"
+    },
+    {
+      id: 8,
+      image: "/lovable-uploads/89bf2720-e4f6-486b-8a48-b7419036908d.png",
+      title: "Tournament Teams",
+      description: "Competing teams posing at Underground Atlanta venue",
+      category: "Community",
+      date: "Sept 2024"
+    },
+    {
+      id: 9,
+      image: "/lovable-uploads/6dbab928-0b43-4d9f-85f9-45792d5a07fd.png",
+      title: "Court Action",
+      description: "Players displaying skills on the futsal court",
+      category: "Gameplay",
+      date: "Sept 2024"
+    },
+    {
+      id: 10,
+      image: "/lovable-uploads/2a8e8d70-221d-40a4-a770-635fe64d4e55.png",
+      title: "Ball Control",
+      description: "Close-up of precise ball handling and footwork technique",
+      category: "Highlights",
+      date: "Sept 2024"
     }
   ];
 
