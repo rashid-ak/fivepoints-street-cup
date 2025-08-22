@@ -76,21 +76,31 @@ const PartnersSection = () => {
             {partners.map((partner, index) => (
               <div key={index} className="text-center p-6 bg-gradient-card rounded-lg group hover:shadow-glow transition-all duration-300">
                 {partner.name === "Akanni Marketing" ? (
-                  <div className="w-16 h-16 mx-auto mb-4 group-hover:scale-105 transition-transform">
-                    <img 
-                      src="/lovable-uploads/f35b8cec-db23-45c7-895e-b1bb80a3c519.png" 
-                      alt="Akanni Marketing logo"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
+                  <a 
+                    href="https://akanni.marketing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-4 group-hover:scale-105 transition-transform">
+                      <img 
+                        src="/lovable-uploads/f35b8cec-db23-45c7-895e-b1bb80a3c519.png" 
+                        alt="Akanni Marketing logo"
+                        className="w-full h-full object-contain cursor-pointer"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground hover:text-primary transition-colors cursor-pointer">{partner.name}</h3>
+                  </a>
                 ) : (
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                    <span className="text-2xl font-black text-primary">
-                      {partner.name.charAt(0)}
-                    </span>
-                  </div>
+                  <>
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                      <span className="text-2xl font-black text-primary">
+                        {partner.name.charAt(0)}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground">{partner.name}</h3>
+                  </>
                 )}
-                <h3 className="text-lg font-bold text-foreground">{partner.name}</h3>
               </div>
             ))}
           </div>
