@@ -4,11 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Registration from "./pages/Registration";
 import Admin from "./pages/Admin";
-import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
-import { AutoNavigate } from "./components/AutoNavigate";
 
 const queryClient = new QueryClient();
 
@@ -18,12 +15,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AutoNavigate />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/registration" element={<Registration />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/success" element={<Success />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

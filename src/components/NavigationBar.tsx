@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   const navItems = [
     { name: "About", href: "#about" },
-    { name: "Gallery", href: "#gallery" },
     { name: "Rules", href: "#rules" },
     { name: "Schedule", href: "#schedule" },
+    { name: "Registration", href: "#registration" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Partners", href: "#partners" },
     { name: "FAQ", href: "#faq" },
   ];
@@ -60,14 +59,20 @@ const NavigationBar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Button 
               variant="ghost" 
-              onClick={() => navigate('/registration')}
+              onClick={() => {
+                const section = document.getElementById('registration');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="font-semibold"
             >
               RSVP Free
             </Button>
             <Button 
               variant="cta" 
-              onClick={() => navigate('/registration')}
+              onClick={() => {
+                const section = document.getElementById('registration');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="font-semibold"
             >
               Enter Team
@@ -104,7 +109,8 @@ const NavigationBar = () => {
                   variant="ghost" 
                   className="w-full font-semibold"
                   onClick={() => {
-                    navigate('/registration');
+                    const section = document.getElementById('registration');
+                    section?.scrollIntoView({ behavior: 'smooth' });
                     setIsOpen(false);
                   }}
                 >
@@ -114,7 +120,8 @@ const NavigationBar = () => {
                   variant="cta" 
                   className="w-full font-semibold"
                   onClick={() => {
-                    navigate('/registration');
+                    const section = document.getElementById('registration');
+                    section?.scrollIntoView({ behavior: 'smooth' });
                     setIsOpen(false);
                   }}
                 >
