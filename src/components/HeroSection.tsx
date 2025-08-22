@@ -46,6 +46,11 @@ const HeroSection = () => {
             "Fast matches. Big energy. All in the heart of the city."
           </p>
 
+          {/* Prize */}
+          <p className="text-lg md:text-xl text-primary font-bold">
+            $1,000 prize for the winning team
+          </p>
+
           {/* Key Details */}
           <div className="flex flex-wrap justify-center gap-6 text-muted-foreground">
             <div className="flex items-center gap-2">

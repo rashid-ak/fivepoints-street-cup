@@ -141,7 +141,7 @@ const Registration = () => {
                       </li>
                       <li className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-accent" />
-                        Prize eligibility
+                        Prize eligibility - $1,000 for winning team
                       </li>
                     </ul>
                     

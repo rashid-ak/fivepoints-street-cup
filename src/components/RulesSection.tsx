@@ -19,6 +19,7 @@ const RulesSection = () => {
             <h2 className="text-4xl md:text-5xl font-black mb-6">
               TOURNAMENT <span className="text-primary">FORMAT & RULES</span>
             </h2>
+            <p className="text-xl text-primary font-bold mb-4">$1,000 prize for the winning team</p>
             <div className="w-24 h-1 bg-gradient-hero mx-auto" />
           </div>
 
