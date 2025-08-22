@@ -1,19 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users } from "lucide-react";
+import BackgroundSection from "@/components/ui/background-section";
+import { getSectionBackground } from "@/config/section-backgrounds";
+
 const HeroSection = () => {
+  const backgroundConfig = getSectionBackground('hero');
+  
   const handleGetDirections = () => {
     window.open('https://maps.google.com/?q=Underground+Atlanta,+Upper+Alabama+St,+Atlanta,+GA', '_blank');
   };
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img src="/lovable-uploads/0cd4d024-4bce-4fe0-8b10-377c28ded7e1.png" alt="5 Points Cup tournament logo with colorful geometric design" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/60" />
-      </div>
 
+  return (
+    <BackgroundSection 
+      {...backgroundConfig}
+      className="min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center animate-fade-up">
+      <div className="container mx-auto px-4 text-center animate-fade-up">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
@@ -63,7 +67,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-energy" />
-              <span className="font-medium"> Free admission</span>
+              <span className="font-medium"> Free admission</span>
             </div>
           </div>
 
@@ -100,6 +104,8 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-energy-bounce" />
         </div>
       </div>
-    </section>;
+    </BackgroundSection>
+  );
 };
+
 export default HeroSection;

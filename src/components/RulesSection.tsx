@@ -1,6 +1,10 @@
 import { CheckCircle } from "lucide-react";
+import BackgroundSection from "@/components/ui/background-section";
+import { getSectionBackground } from "@/config/section-backgrounds";
 
 const RulesSection = () => {
+  const backgroundConfig = getSectionBackground('rules');
+  
   const rules = [
     "16-team single-elimination bracket",
     "3v3 format",
@@ -11,7 +15,10 @@ const RulesSection = () => {
   ];
 
   return (
-    <section id="rules" className="py-20 bg-background">
+    <BackgroundSection 
+      {...backgroundConfig}
+      className="py-20 bg-background"
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -38,7 +45,7 @@ const RulesSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </BackgroundSection>
   );
 };
 
