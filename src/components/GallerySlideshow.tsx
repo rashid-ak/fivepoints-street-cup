@@ -108,7 +108,7 @@ const GallerySlideshow = () => {
               {/* Content */}
               <div className="p-8 bg-background/80 backdrop-blur-sm">
                 <h3 className="text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                  {currentItem.title}
+                  In-Game play
                 </h3>
                 
                 
