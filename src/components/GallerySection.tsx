@@ -3,15 +3,9 @@ import { Camera } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 import GallerySlideshow from "./GallerySlideshow";
-
 const GallerySection = () => {
   const backgroundConfig = getSectionBackground('gallery');
-
-  return (
-    <BackgroundSection 
-      {...backgroundConfig}
-      className="py-24 bg-background"
-    >
+  return <BackgroundSection {...backgroundConfig} className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -35,15 +29,9 @@ const GallerySection = () => {
 
         {/* Street Football Action Image */}
         <div className="text-center mt-16">
-          <img 
-            src="/lovable-uploads/7c408cbd-48db-45e0-8267-e1881f129203.png" 
-            alt="Street Football Action"
-            className="mx-auto h-20 object-contain"
-          />
+          
         </div>
       </div>
-    </BackgroundSection>
-  );
+    </BackgroundSection>;
 };
-
 export default GallerySection;
