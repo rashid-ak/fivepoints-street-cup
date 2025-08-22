@@ -17,7 +17,8 @@ const Registration = () => {
     captainName: '',
     captainEmail: '',
     captainPhone: '',
-    players: ['', '', '', '', ''], // Array for up to 5 additional players
+    players: ['', '', '', '', ''],
+    // Array for up to 5 additional players
     skillLevel: '',
     rulesAcknowledged: false,
     mediaRelease: false,
@@ -32,7 +33,10 @@ const Registration = () => {
       setFormData(prev => {
         const newPlayers = [...prev.players];
         newPlayers[index] = value as string;
-        return { ...prev, players: newPlayers };
+        return {
+          ...prev,
+          players: newPlayers
+        };
       });
     } else {
       setFormData(prev => ({
@@ -267,45 +271,12 @@ const Registration = () => {
                   <Separator />
 
                   {/* Team Players */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-bold text-foreground">Team Players (Captain + up to 5 additional players)</h3>
-                    <p className="text-sm text-muted-foreground">Add additional team members (optional). Maximum 6 total players including captain.</p>
-                    
-                    <div className="grid gap-4">
-                      {formData.players.map((player, index) => (
-                        <div key={index}>
-                          <Label htmlFor={`player${index + 1}`}>Player {index + 2} Name</Label>
-                          <Input 
-                            id={`player${index + 1}`}
-                            value={player}
-                            onChange={(e) => handleInputChange('players', e.target.value, index)}
-                            placeholder={`Player ${index + 2} full name (optional)`}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  
 
                   <Separator />
 
                   {/* Skill Level */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-bold text-foreground">Team Skill Level</h3>
-                    
-                    <div>
-                      <Label htmlFor="skillLevel">Overall Team Skill Level *</Label>
-                      <Select value={formData.skillLevel} onValueChange={value => handleInputChange('skillLevel', value)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select skill level" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Beginner">Beginner - New to competitive play</SelectItem>
-                          <SelectItem value="Intermediate">Intermediate - Some tournament experience</SelectItem>
-                          <SelectItem value="Advanced">Advanced - Experienced competitive players</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
+                  
 
                   
 
@@ -360,12 +331,7 @@ const Registration = () => {
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="zipCode">Zip Code (Optional)</Label>
-                        <Input 
-                          id="zipCode" 
-                          value={formData.zipCode} 
-                          onChange={e => handleInputChange('zipCode', e.target.value)} 
-                          placeholder="12345" 
-                        />
+                        <Input id="zipCode" value={formData.zipCode} onChange={e => handleInputChange('zipCode', e.target.value)} placeholder="12345" />
                       </div>
                       <div>
                         <Label htmlFor="partySize">Party Size</Label>
