@@ -14,8 +14,16 @@ const HeroSection = () => {
   return (
     <BackgroundSection 
       {...backgroundConfig}
-      className="min-h-screen flex items-center justify-center overflow-hidden"
+      className="min-h-screen flex items-center justify-center overflow-hidden relative"
     >
+      {/* Geometric Design Element */}
+      <div className="absolute bottom-0 left-0 w-full pointer-events-none">
+        <img 
+          src="/lovable-uploads/88bdae7a-83f9-46d9-9f86-deb6d5fc0158.png" 
+          alt="Geometric design" 
+          className="w-full h-auto opacity-80"
+        />
+      </div>
       {/* Content */}
       <div className="container mx-auto px-4 text-center animate-fade-up">
         <div className="max-w-4xl mx-auto space-y-8">
