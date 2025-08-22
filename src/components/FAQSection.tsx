@@ -8,7 +8,7 @@ const FAQSection = () => {
     },
     {
       question: "What is the tournament format?",
-      answer: "The tournament features 16 teams in a single-elimination bracket. Each match is 3v3 futsal with first team to 5 goals winning. There's a 15-minute time cap, with the leader at time winning if no team reaches 5 goals. Ties are resolved by next-goal-wins."
+      answer: "The tournament features one round of games before single elimination, then single elimination starting from the round of 16. Each match is 3v3 futsal with first team to 5 goals winning. There's a 10-minute time cap, with the leader at time winning if no team reaches 5 goals. Ties are resolved by next-goal-wins."
     },
     {
       question: "What should players bring?",
