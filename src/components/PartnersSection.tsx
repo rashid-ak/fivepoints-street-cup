@@ -78,7 +78,7 @@ const PartnersSection = () => {
                 {partner.name === "Akanni Marketing" ? (
                   <div className="w-16 h-16 mx-auto mb-4 group-hover:scale-105 transition-transform">
                     <img 
-                      src="/lovable-uploads/e8d08d8f-5461-486e-9679-acd8b2ba7b5c.png" 
+                      src="/lovable-uploads/f35b8cec-db23-45c7-895e-b1bb80a3c519.png" 
                       alt="Akanni Marketing logo"
                       className="w-full h-full object-contain"
                     />
