@@ -67,7 +67,7 @@ serve(async (req) => {
 
     try {
       const { data: emailResult, error: emailError } = await resend.emails.send({
-        from: "5 Points Cup <media@akanni.marketing>",
+        from: "5 Points Cup <rashid@akanni.marketing>",
         to: [recipientEmail],
         subject: subject,
         html: emailContent,
@@ -178,7 +178,7 @@ function generateTeamConfirmationEmail(data: any): string {
         </div>
 
         <div style="background: #e9ecef; padding: 15px; border-radius: 8px; text-align: center; font-size: 14px; color: #6c757d;">
-          Questions? Reply to this email or contact us at media@akanni.marketing
+          Questions? Reply to this email or contact us at rashid@akanni.marketing
         </div>
       </div>
     </body>
@@ -243,7 +243,7 @@ function generateRSVPConfirmationEmail(data: any): string {
         </div>
 
         <div style="background: #e9ecef; padding: 15px; border-radius: 8px; text-align: center; font-size: 14px; color: #6c757d;">
-          Questions? Reply to this email or contact us at media@akanni.marketing
+          Questions? Reply to this email or contact us at rashid@akanni.marketing
         </div>
       </div>
     </body>

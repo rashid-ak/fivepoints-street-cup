@@ -52,14 +52,14 @@ serve(async (req) => {
         await supabaseClient.functions.invoke('send-confirmation-email', {
           body: {
             emailType: "rsvp_confirmation",
-            recipientEmail: "media@akanni.marketing",
+            recipientEmail: "rashid@akanni.marketing",
             data: {
               name: "Test RSVP User",
               partySize: 2
             }
           }
         });
-        logStep("Test RSVP email sent to media@akanni.marketing");
+        logStep("Test RSVP email sent to rashid@akanni.marketing");
       } catch (emailError) {
         logStep("Failed to send test email", emailError);
         throw new Error(`Email failed: ${emailError.message}`);
@@ -67,7 +67,7 @@ serve(async (req) => {
 
       return new Response(JSON.stringify({ 
         success: true,
-        message: "Test RSVP created and email sent to media@akanni.marketing",
+        message: "Test RSVP created and email sent to rashid@akanni.marketing",
         rsvpId: rsvp.id
       }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -107,7 +107,7 @@ serve(async (req) => {
         await supabaseClient.functions.invoke('send-confirmation-email', {
           body: {
             emailType: "team_confirmation",
-            recipientEmail: "media@akanni.marketing",
+            recipientEmail: "rashid@akanni.marketing",
             data: {
               teamName: "Test Team",
               captainName: "Test Captain",
@@ -116,7 +116,7 @@ serve(async (req) => {
             }
           }
         });
-        logStep("Test team email sent to media@akanni.marketing");
+        logStep("Test team email sent to rashid@akanni.marketing");
       } catch (emailError) {
         logStep("Failed to send test email", emailError);
         throw new Error(`Email failed: ${emailError.message}`);
@@ -124,7 +124,7 @@ serve(async (req) => {
 
       return new Response(JSON.stringify({ 
         success: true,
-        message: "Test team created and email sent to media@akanni.marketing",
+        message: "Test team created and email sent to rashid@akanni.marketing",
         teamId: team.id
       }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

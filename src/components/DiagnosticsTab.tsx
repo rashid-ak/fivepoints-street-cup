@@ -187,7 +187,7 @@ export const DiagnosticsTab = () => {
 
           <div className="mt-4 p-4 bg-blue-50 rounded-lg">
             <p className="text-sm text-blue-800">
-              <strong>Note:</strong> Test emails will be sent to media@akanni.marketing to verify the email integration is working properly.
+              <strong>Note:</strong> Test emails will be sent to rashid@akanni.marketing to verify the email integration is working properly.
             </p>
           </div>
         </CardContent>

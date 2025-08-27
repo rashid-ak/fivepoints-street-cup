@@ -75,7 +75,7 @@ const FAQSection = () => {
             </p>
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
-                Email: <span className="text-primary font-semibold">media@akanni.marketing</span>
+                Email: <span className="text-primary font-semibold">rashid@akanni.marketing</span>
               </p>
               <p className="text-sm text-muted-foreground">
                 Follow us for updates on social media
