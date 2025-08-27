@@ -70,7 +70,7 @@ const FooterSection = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-primary" />
-                  <span className="text-muted-foreground text-sm">media@akanni.marketing</span>
+                  <span className="text-muted-foreground text-sm">rashid@akanni.marketing</span>
                 </div>
                 <div className="text-sm text-muted-foreground">
                   <p>Underground Atlanta</p>
