@@ -9,7 +9,7 @@ const ScheduleSection = () => {
   
   const scheduleItems = [
     {
-      time: "10:00 AM - 12:00 PM",
+      time: "12:30 PM - 2:30 PM",
       title: "Chelsea vs Manchester United",
       subtitle: "Big Screen Watch Party",
       type: "watch-party",
