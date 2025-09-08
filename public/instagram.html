@@ -1,4 +1,52 @@
 <!doctype html>
-<meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=https://www.instagram.com/5pointscup/">
-<script>location.replace("https://www.instagram.com/5pointscup/");</script>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Open Instagram - 5 Points Cup</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.instagram.com/5pointscup/">
+  <script>
+    (function(){
+      var appLink = 'instagram://user?username=5pointscup';
+      var webLink = 'https://www.instagram.com/5pointscup/';
+      var navigated = false;
+
+      function tryOpen() {
+        // Attempt to open the Instagram app
+        window.location.href = appLink;
+        // Fallback to web after a short delay
+        setTimeout(function(){
+          if (!navigated) {
+            navigated = true;
+            window.location.href = webLink;
+          }
+        }, 900);
+      }
+
+      // If user leaves the page (app opens), cancel fallback
+      document.addEventListener('visibilitychange', function(){
+        if (document.visibilityState === 'hidden') navigated = true;
+      });
+
+      window.addEventListener('load', tryOpen);
+    })();
+  </script>
+  <style>
+    :root { color-scheme: light dark; }
+    body{margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0b0b0b;color:#fff}
+    a{color:#ff8a2b}
+  </style>
+</head>
+<body>
+  <div style="text-align:center">
+    <h1 style="font-size:1.25rem;margin:0 0 .5rem">Opening Instagram…</h1>
+    <p style="opacity:.8;margin:0 0 1rem">If nothing happens, choose an option below:</p>
+    <p>
+      <a href="instagram://user?username=5pointscup">Open in Instagram app</a>
+      &nbsp;•&nbsp;
+      <a href="https://www.instagram.com/5pointscup/">Open in browser</a>
+    </p>
+  </div>
+</body>
+</html>

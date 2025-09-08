@@ -82,10 +82,9 @@ const HeroSection = () => {
             {/* Instagram button below */}
             <div className="flex justify-center">
               <a 
-                href="https://www.instagram.com/5pointscup/" 
-                target="_blank" 
-                rel="noopener"
-                aria-label="Follow 5 Points Cup on Instagram"
+                href="/instagram.html" 
+                target="_top"
+                aria-label="Open 5 Points Cup Instagram"
                 className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
               >
                 {/* White IG glyph using currentColor */}
