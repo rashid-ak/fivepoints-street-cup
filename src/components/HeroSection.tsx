@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin, Users, Instagram } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 const HeroSection = () => {
@@ -57,7 +57,7 @@ const HeroSection = () => {
           </div>
 
           {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <div className="flex flex-row gap-4 justify-center items-center pt-8">
             <Button 
               variant="hero" 
               size="lg" 
@@ -73,6 +73,15 @@ const HeroSection = () => {
               onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
             >
               Enter a Team
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="w-11 h-11 rounded-full bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-glow"
+              onClick={() => window.open('https://www.instagram.com/5pointscup/', '_blank')}
+              aria-label="Follow us on Instagram"
+            >
+              <Instagram className="w-5 h-5" />
             </Button>
           </div>
 
