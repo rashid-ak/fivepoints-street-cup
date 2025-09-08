@@ -82,15 +82,13 @@ const HeroSection = () => {
             {/* Instagram button below */}
             <div className="flex justify-center">
               <a 
-                href="https://www.instagram.com/5pointscup/" 
-                target="_blank" 
+                href="https://www.instagram.com/5pointscup/"
                 rel="noopener"
                 aria-label="Follow 5 Points Cup on Instagram"
                 className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
               >
-                {/* White IG glyph using currentColor */}
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
-                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg>
               </a>
             </div>
