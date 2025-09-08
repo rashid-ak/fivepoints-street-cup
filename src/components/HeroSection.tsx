@@ -57,32 +57,38 @@ const HeroSection = () => {
           </div>
 
           {/* Call to Action Buttons */}
-          <div className="flex flex-row gap-4 justify-center items-center pt-8">
-            <Button 
-              variant="hero" 
-              size="lg" 
-              className="text-xl px-8 py-6 min-w-[200px]"
-              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
+          <div className="hero-cta w-full flex items-center justify-center gap-3 flex-wrap pt-8">
+            <a 
+              href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
+              target="_blank"
+              rel="noopener"
+              className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
             >
               RSVP (Free)
-            </Button>
-            <Button 
-              variant="cta" 
-              size="lg" 
-              className="min-w-[200px]"
-              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
+            </a>
+            
+            <a 
+              href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
+              target="_blank"
+              rel="noopener"
+              className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
             >
               Enter a Team
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="w-11 h-11 rounded-full bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg hover:shadow-glow"
-              onClick={() => window.open('https://www.instagram.com/5pointscup/', '_blank')}
-              aria-label="Follow us on Instagram"
+            </a>
+            
+            {/* Instagram icon button (same orange) */}
+            <a 
+              href="https://www.instagram.com/5pointscup/" 
+              target="_blank" 
+              rel="noopener"
+              aria-label="Follow 5 Points Cup on Instagram"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
             >
-              <Instagram className="w-5 h-5" />
-            </Button>
+              {/* White IG glyph using currentColor */}
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+            </a>
           </div>
 
           {/* Location Callout */}
