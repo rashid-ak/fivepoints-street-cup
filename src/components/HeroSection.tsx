@@ -57,38 +57,43 @@ const HeroSection = () => {
           </div>
 
           {/* Call to Action Buttons */}
-          <div className="hero-cta w-full flex items-center justify-center gap-3 flex-wrap pt-8">
-            <a 
-              href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
-              target="_blank"
-              rel="noopener"
-              className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
-            >
-              RSVP (Free)
-            </a>
+          <div className="pt-8 space-y-4">
+            {/* Main CTA buttons */}
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <a 
+                href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
+                target="_blank"
+                rel="noopener"
+                className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
+              >
+                RSVP (Free)
+              </a>
+              
+              <a 
+                href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
+                target="_blank"
+                rel="noopener"
+                className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
+              >
+                Enter a Team
+              </a>
+            </div>
             
-            <a 
-              href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
-              target="_blank"
-              rel="noopener"
-              className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
-            >
-              Enter a Team
-            </a>
-            
-            {/* Instagram icon button (same orange) */}
-            <a 
-              href="https://www.instagram.com/5pointscup/" 
-              target="_blank" 
-              rel="noopener"
-              aria-label="Follow 5 Points Cup on Instagram"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
-            >
-              {/* White IG glyph using currentColor */}
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
-                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg>
-            </a>
+            {/* Instagram button below */}
+            <div className="flex justify-center">
+              <a 
+                href="https://www.instagram.com/5pointscup/" 
+                target="_blank" 
+                rel="noopener"
+                aria-label="Follow 5 Points Cup on Instagram"
+                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
+              >
+                {/* White IG glyph using currentColor */}
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           {/* Location Callout */}
