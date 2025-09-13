@@ -1,4 +1,3 @@
-import { useState, lazy, Suspense } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Users, CheckCircle } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
@@ -7,18 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 
-const LazyEventbriteModal = lazy(() => 
-  import("@/components/LazyEventbriteModal").then(module => ({ 
-    default: module.LazyEventbriteModal 
-  }))
-);
-
 const EventbriteSection = () => {
-  const [showModal, setShowModal] = useState<'team' | 'rsvp' | null>(null);
   const backgroundConfig = getSectionBackground('about');
 
-  const handleCTAClick = (type: 'team' | 'rsvp') => {
-    setShowModal(type);
+  const handleEventbriteRedirect = () => {
+    window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
   };
 
   return (
@@ -145,7 +137,7 @@ const EventbriteSection = () => {
                   variant="hero" 
                   size="lg" 
                   className="text-xl px-8 py-6 min-w-[200px]"
-                  onClick={() => handleCTAClick('rsvp')}
+                  onClick={handleEventbriteRedirect}
                 >
                   RSVP (Free)
                 </Button>
@@ -153,7 +145,7 @@ const EventbriteSection = () => {
                   variant="cta" 
                   size="lg" 
                   className="min-w-[200px]"
-                  onClick={() => handleCTAClick('team')}
+                  onClick={handleEventbriteRedirect}
                 >
                   Enter a Team
                 </Button>
@@ -166,16 +158,6 @@ const EventbriteSection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Lazy-loaded modal */}
-      {showModal && (
-        <Suspense fallback={null}>
-          <LazyEventbriteModal 
-            type={showModal} 
-            onClose={() => setShowModal(null)} 
-          />
-        </Suspense>
-      )}
     </BackgroundSection>
   );
 };
