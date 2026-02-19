@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut, Shield } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
-  const navItems = [
+  const homeNavItems = [
     { name: "About", href: "#about" },
     { name: "Rules", href: "#rules" },
     { name: "Schedule", href: "#schedule" },
@@ -16,9 +21,7 @@ const NavigationBar = () => {
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
   };
 
@@ -28,57 +31,50 @@ const NavigationBar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img 
-              src="/lovable-uploads/e4145787-35ca-4832-9839-e472dd1fdd50.png" 
-              alt="5 Points Cup Logo" 
-              className="w-8 h-8"
-            />
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-xl font-black text-foreground hover:text-primary transition-colors"
-            >
+            <img src="/lovable-uploads/e4145787-35ca-4832-9839-e472dd1fdd50.png" alt="5 Points Cup Logo" className="w-8 h-8" />
+            <Link to="/" className="text-xl font-black text-foreground hover:text-primary transition-colors">
               POINTS <span className="text-primary">CUP</span>
-            </button>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-white hover:text-primary transition-colors font-medium"
-              >
-                {item.name}
-              </button>
-            ))}
+          <div className="hidden md:flex items-center space-x-6">
+            {isHome &&
+              homeNavItems.map((item) => (
+                <button key={item.name} onClick={() => scrollToSection(item.href)} className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+                  {item.name}
+                </button>
+              ))}
+            <Link to="/events" className="text-foreground hover:text-primary transition-colors font-medium text-sm">Events</Link>
           </div>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
-              className="font-semibold"
-            >
-              RSVP Free
-            </Button>
-            <Button 
-              variant="cta" 
-              onClick={() => window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank')}
-              className="font-semibold"
-            >
-              Enter Team
-            </Button>
+          {/* Desktop CTA / Auth */}
+          <div className="hidden md:flex items-center space-x-3">
+            {isHome && (
+              <>
+                <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
+                  <Button variant="ghost" className="font-semibold text-sm">RSVP Free</Button>
+                </a>
+                <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
+                  <Button variant="cta" className="font-semibold text-sm">Enter Team</Button>
+                </a>
+              </>
+            )}
+            {user ? (
+              <div className="flex items-center gap-2">
+                {isAdmin && (
+                  <Link to="/admin"><Button variant="ghost" size="sm"><Shield className="w-4 h-4 mr-1" />Admin</Button></Link>
+                )}
+                <Button variant="ghost" size="icon" onClick={signOut}><LogOut className="w-4 h-4" /></Button>
+              </div>
+            ) : (
+              <Link to="/login"><Button variant="ghost" size="sm">Sign In</Button></Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-            >
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
@@ -88,37 +84,31 @@ const NavigationBar = () => {
         {isOpen && (
           <div className="md:hidden border-t border-border">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-background">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-3 py-2 text-white hover:text-primary transition-colors font-medium"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <div className="pt-4 space-y-2">
-                <Button 
-                  variant="ghost" 
-                  className="w-full font-semibold"
-                  onClick={() => {
-                    window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
-                    setIsOpen(false);
-                  }}
-                >
-                  RSVP Free
-                </Button>
-                <Button 
-                  variant="cta" 
-                  className="w-full font-semibold"
-                  onClick={() => {
-                    window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
-                    setIsOpen(false);
-                  }}
-                >
-                  Enter Team
-                </Button>
-              </div>
+              {isHome &&
+                homeNavItems.map((item) => (
+                  <button key={item.name} onClick={() => scrollToSection(item.href)} className="block w-full text-left px-3 py-2 text-foreground hover:text-primary transition-colors font-medium">
+                    {item.name}
+                  </button>
+                ))}
+              <Link to="/events" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Events</Link>
+              {user ? (
+                <>
+                  {isAdmin && <Link to="/admin" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Admin</Link>}
+                  <button onClick={() => { signOut(); setIsOpen(false); }} className="block w-full text-left px-3 py-2 text-foreground hover:text-primary font-medium">Sign Out</button>
+                </>
+              ) : (
+                <Link to="/login" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Sign In</Link>
+              )}
+              {isHome && (
+                <div className="pt-4 space-y-2">
+                  <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
+                    <Button variant="ghost" className="w-full font-semibold" onClick={() => setIsOpen(false)}>RSVP Free</Button>
+                  </a>
+                  <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
+                    <Button variant="cta" className="w-full font-semibold" onClick={() => setIsOpen(false)}>Enter Team</Button>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         )}
