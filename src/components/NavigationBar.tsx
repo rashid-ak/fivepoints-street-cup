@@ -51,15 +51,8 @@ const NavigationBar = () => {
                 <Button variant="cta" className="font-semibold text-sm">Enter a Team</Button>
               </Link>
             )}
-            {user ? (
-              <div className="flex items-center gap-2">
-                {isAdmin && (
-                  <Link to="/admin"><Button variant="ghost" size="sm"><Shield className="w-4 h-4 mr-1" />Admin</Button></Link>
-                )}
-                <Button variant="ghost" size="icon" onClick={signOut}><LogOut className="w-4 h-4" /></Button>
-              </div>
-            ) : (
-              <Link to="/login"><Button variant="ghost" size="sm">Sign In</Button></Link>
+            {user && isAdmin && (
+              <Link to="/admin"><Button variant="ghost" size="sm"><Shield className="w-4 h-4 mr-1" />Admin</Button></Link>
             )}
           </div>
 
@@ -82,14 +75,7 @@ const NavigationBar = () => {
                   </button>
                 ))}
               <Link to="/events" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Events</Link>
-              {user ? (
-                <>
-                  {isAdmin && <Link to="/admin" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Admin</Link>}
-                  <button onClick={() => { signOut(); setIsOpen(false); }} className="block w-full text-left px-3 py-2 text-foreground hover:text-primary font-medium">Sign Out</button>
-                </>
-              ) : (
-                <Link to="/login" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Sign In</Link>
-              )}
+              {user && isAdmin && <Link to="/admin" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Admin</Link>}
               {isHome && (
                 <div className="pt-4">
                   <Link to="/events" onClick={() => setIsOpen(false)}>
