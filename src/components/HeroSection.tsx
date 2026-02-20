@@ -45,7 +45,7 @@ const HeroSection = () => {
           <div className="flex flex-wrap justify-center gap-6 text-white">
             <div className="flex items-center gap-2">
               <Users className="w-5 h-5 text-primary" />
-              <span className="font-medium">3v3 futsal</span>
+              
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-accent" />
