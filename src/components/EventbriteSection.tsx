@@ -31,7 +31,7 @@ const EventbriteSection = () => {
         .from("events")
         .select("*")
         .order("date", { ascending: true })
-        .limit(3);
+        .limit(2);
 
       if (data) {
         const eventsWithCounts = await Promise.all(
