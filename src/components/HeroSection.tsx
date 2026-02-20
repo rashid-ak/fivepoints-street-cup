@@ -6,7 +6,7 @@ import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 const HeroSection = () => {
   const backgroundConfig = getSectionBackground('hero');
-  
+
   const handleGetDirections = () => {
     window.open('https://maps.google.com/?q=Underground+Atlanta,+Upper+Alabama+St,+Atlanta,+GA', '_blank');
   };
@@ -27,9 +27,9 @@ const HeroSection = () => {
           </div>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white max-w-3xl mx-auto">
-            3v3 Futsal at Underground Atlanta
-          </p>
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white max-w-3xl mx-auto">3v3 Street Futsal in Atlanta
+
+        </p>
 
           {/* Tagline */}
           <p className="text-lg md:text-xl font-semibold text-orange-500">
@@ -38,8 +38,8 @@ const HeroSection = () => {
 
           {/* Prize */}
           <p className="text-lg md:text-xl text-primary font-bold">
-            $1,000 prize for the winning team
-          </p>
+
+        </p>
 
           {/* Key Details */}
           <div className="flex flex-wrap justify-center gap-6 text-white">
@@ -56,24 +56,24 @@ const HeroSection = () => {
           {/* Call to Action Buttons */}
           <div className="pt-8 space-y-4">
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <Link 
-                to="/events"
-                className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
-              >
+              <Link
+              to="/events"
+              className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition">
+
                 Enter a Team
               </Link>
             </div>
             
             {/* Instagram button below */}
             <div className="flex justify-center">
-              <a 
-                href="/instagram.html" 
-                target="_top"
-                aria-label="Open 5 Points Cup Instagram"
-                className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
-              >
+              <a
+              href="/instagram.html"
+              target="_top"
+              aria-label="Open 5 Points Cup Instagram"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition">
+
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
-                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                 </svg>
               </a>
             </div>
