@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Calendar, Users } from "lucide-react";
+import { Calendar, MapPin, Users } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 const HeroSection = () => {
@@ -69,6 +69,20 @@ const HeroSection = () => {
                 </svg>
               </a>
             </div>
+          </div>
+
+          {/* Location Callout */}
+          <div className="flex flex-col items-center gap-2 text-white">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-primary" />
+              <span className="font-medium">Upper Alabama St — across from 5 Points MARTA</span>
+            </div>
+            <button
+              onClick={handleGetDirections}
+              className="px-4 py-2 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition"
+            >
+              Get Directions
+            </button>
           </div>
 
         </div>
