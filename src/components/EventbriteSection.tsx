@@ -80,7 +80,7 @@ const EventbriteSection = () => {
               <span className="block text-foreground">NEXT MATCH</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Browse upcoming tournaments and register your team.
+              Browse upcoming events and register your team.
             </p>
           </div>
 
