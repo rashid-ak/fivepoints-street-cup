@@ -12,11 +12,7 @@ const NavigationBar = () => {
 
   const homeNavItems = [
     { name: "About", href: "#about" },
-    { name: "Rules", href: "#rules" },
-    { name: "Schedule", href: "#schedule" },
     { name: "Gallery", href: "#gallery" },
-    { name: "Partners", href: "#partners" },
-    { name: "FAQ", href: "#faq" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -51,14 +47,9 @@ const NavigationBar = () => {
           {/* Desktop CTA / Auth */}
           <div className="hidden md:flex items-center space-x-3">
             {isHome && (
-              <>
-                <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
-                  <Button variant="ghost" className="font-semibold text-sm">RSVP Free</Button>
-                </a>
-                <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
-                  <Button variant="cta" className="font-semibold text-sm">Enter Team</Button>
-                </a>
-              </>
+              <Link to="/events">
+                <Button variant="cta" className="font-semibold text-sm">Enter a Team</Button>
+              </Link>
             )}
             {user ? (
               <div className="flex items-center gap-2">
@@ -100,13 +91,10 @@ const NavigationBar = () => {
                 <Link to="/login" className="block px-3 py-2 text-foreground hover:text-primary font-medium" onClick={() => setIsOpen(false)}>Sign In</Link>
               )}
               {isHome && (
-                <div className="pt-4 space-y-2">
-                  <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
-                    <Button variant="ghost" className="w-full font-semibold" onClick={() => setIsOpen(false)}>RSVP Free</Button>
-                  </a>
-                  <a href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" target="_blank" rel="noopener">
-                    <Button variant="cta" className="w-full font-semibold" onClick={() => setIsOpen(false)}>Enter Team</Button>
-                  </a>
+                <div className="pt-4">
+                  <Link to="/events" onClick={() => setIsOpen(false)}>
+                    <Button variant="cta" className="w-full font-semibold">Enter a Team</Button>
+                  </Link>
                 </div>
               )}
             </div>

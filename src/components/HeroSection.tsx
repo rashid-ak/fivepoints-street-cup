@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Instagram } from "lucide-react";
+import { Calendar, MapPin, Users } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 const HeroSection = () => {
@@ -44,39 +45,23 @@ const HeroSection = () => {
           <div className="flex flex-wrap justify-center gap-6 text-white">
             <div className="flex items-center gap-2">
               <Users className="w-5 h-5 text-primary" />
-              <span className="font-medium">3v3 futsal • 16 teams</span>
+              <span className="font-medium">3v3 futsal</span>
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-accent" />
-              <span className="font-medium">Saturday, Sept 20</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-energy" />
-              <span className="font-medium"> Free admission</span>
+              <span className="font-medium">Coming Soon, 2026</span>
             </div>
           </div>
 
           {/* Call to Action Buttons */}
           <div className="pt-8 space-y-4">
-            {/* Main CTA buttons */}
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <a 
-                href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
-                target="_blank"
-                rel="noopener"
-                className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
-              >
-                RSVP (Free)
-              </a>
-              
-              <a 
-                href="https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator" 
-                target="_blank"
-                rel="noopener"
+              <Link 
+                to="/events"
                 className="px-5 py-3 rounded-full bg-[#FF6A00] text-white font-medium hover:opacity-90 transition"
               >
                 Enter a Team
-              </a>
+              </Link>
             </div>
             
             {/* Instagram button below */}
@@ -87,7 +72,6 @@ const HeroSection = () => {
                 aria-label="Open 5 Points Cup Instagram"
                 className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[#FF6A00] text-white shadow-sm hover:shadow-md transition"
               >
-                {/* White IG glyph using currentColor */}
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
                   <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM18 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg>

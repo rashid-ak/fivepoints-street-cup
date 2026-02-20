@@ -1,23 +1,69 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Users, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import defaultHero from "@/assets/default-event-hero.jpg";
+
+interface Event {
+  id: string;
+  title: string;
+  hero_image: string | null;
+  date: string;
+  start_time: string;
+  location: string | null;
+  price: number;
+  capacity: number | null;
+  registrant_count?: number;
+}
 
 const EventbriteSection = () => {
   const backgroundConfig = getSectionBackground('about');
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleEventbriteRedirect = () => {
-    window.open('https://www.eventbrite.com/e/5-points-cup-tickets-1619252671329?aff=oddtdtcreator', '_blank');
-  };
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const { data } = await supabase
+        .from("events")
+        .select("*")
+        .order("date", { ascending: true })
+        .limit(3);
+
+      if (data) {
+        const eventsWithCounts = await Promise.all(
+          data.map(async (event: any) => {
+            const { count } = await supabase
+              .from("registrants")
+              .select("*", { count: "exact", head: true })
+              .eq("event_id", event.id)
+              .eq("payment_status", "paid");
+            return { ...event, registrant_count: count || 0 };
+          })
+        );
+        setEvents(eventsWithCounts);
+      }
+      setLoading(false);
+    };
+    fetchEvents();
+  }, []);
+
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
 
   return (
     <BackgroundSection 
       {...backgroundConfig}
       className="py-20 bg-background"
-      id="registration"
+      id="events"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
@@ -25,136 +71,91 @@ const EventbriteSection = () => {
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 text-sm font-bold border-primary text-primary bg-background/20 backdrop-blur-sm">
               <Users className="w-4 h-4 mr-2" />
-              RSVP & TEAM ENTRY
+              UPCOMING EVENTS
             </Badge>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6">
               <span className="bg-gradient-hero bg-clip-text text-transparent">
-                JOIN THE
+                FIND YOUR
               </span>
-              <span className="block text-foreground">ACTION</span>
+              <span className="block text-foreground">NEXT MATCH</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Choose how you want to be part of the 5 Points Cup. All registration and payments are handled securely through Eventbrite.
+              Browse upcoming tournaments and register your team.
             </p>
           </div>
 
-          {/* Registration Options Overview */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Team Registration */}
-            <Card className="bg-gradient-card border-primary/20 hover:shadow-glow transition-all duration-300">
-              <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <CardTitle className="text-2xl font-black">ENTER A TEAM</CardTitle>
-                <p className="text-muted-foreground">Compete in the tournament</p>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="text-center">
-                    <div className="text-3xl font-black text-primary mb-2">$100</div>
-                    <p className="text-sm text-muted-foreground">Entry fee per team</p>
+          {/* Events Grid */}
+          {loading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-card rounded-lg border border-border animate-pulse">
+                  <div className="h-48 bg-muted rounded-t-lg" />
+                  <div className="p-6 space-y-3">
+                    <div className="h-6 bg-muted rounded w-3/4" />
+                    <div className="h-4 bg-muted rounded w-1/2" />
                   </div>
-                  
-                  <Separator />
-                  
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent" />
-                      6 players max (3 starters + 3 subs)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent" />
-                      Tournament bracket entry
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent" />
-                      Team check-in & logistics
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-accent" />
-                      Prize eligibility - $1,000 for winning team
-                    </li>
-                  </ul>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* RSVP */}
-            <Card className="bg-gradient-card border-accent/20 hover:shadow-glow transition-all duration-300">
-              <CardHeader className="text-center pb-6">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-accent-foreground" />
-                </div>
-                <CardTitle className="text-2xl font-black">RSVP FREE</CardTitle>
-                <p className="text-muted-foreground">Join as a spectator</p>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="text-center">
-                    <div className="text-3xl font-black text-accent mb-2">FREE</div>
-                    <p className="text-sm text-muted-foreground">No cost to attend</p>
-                  </div>
-                  
-                  <Separator />
-                  
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      Watch tournament action
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      Big screen watch parties
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      Food trucks & entertainment
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-primary" />
-                      Family-friendly activities
-                    </li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Registration CTA */}
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-card p-8 rounded-xl shadow-card text-center">
-              <h3 className="text-3xl font-black mb-4">Register on Eventbrite</h3>
-              <p className="text-xl text-muted-foreground mb-2">
-                Saturday, September 20
-              </p>
-              <p className="text-lg text-muted-foreground mb-8">
-                Underground Atlanta — Upper Alabama St, across from 5 Points MARTA Station
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button 
-                  variant="hero" 
-                  size="lg" 
-                  className="text-xl px-8 py-6 min-w-[200px]"
-                  onClick={handleEventbriteRedirect}
-                >
-                  RSVP (Free)
-                </Button>
-                <Button 
-                  variant="cta" 
-                  size="lg" 
-                  className="min-w-[200px]"
-                  onClick={handleEventbriteRedirect}
-                >
-                  Enter a Team
-                </Button>
-              </div>
-              
-              <p className="text-sm text-muted-foreground mt-6">
-                All registration, payment, and confirmation handled securely by Eventbrite
-              </p>
+              ))}
             </div>
+          ) : events.length === 0 ? (
+            <p className="text-center text-muted-foreground text-lg mb-12">No upcoming events yet. Check back soon!</p>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {events.map((event) => {
+                const spotsLeft = event.capacity ? event.capacity - (event.registrant_count || 0) : null;
+                const soldOut = spotsLeft !== null && spotsLeft <= 0;
+
+                return (
+                  <Link key={event.id} to={`/events/${event.id}`} className="group">
+                    <div className="bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-glow">
+                      <div className="h-48 bg-muted relative overflow-hidden">
+                        <img src={event.hero_image || defaultHero} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div className="absolute top-3 right-3">
+                          {Number(event.price) === 0 ? (
+                            <Badge className="bg-green-600 text-foreground">Free</Badge>
+                          ) : (
+                            <Badge className="bg-primary text-primary-foreground">${Number(event.price)}</Badge>
+                          )}
+                        </div>
+                        {soldOut && (
+                          <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
+                            <Badge variant="destructive" className="text-lg px-4 py-1">Sold Out</Badge>
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-6 space-y-3">
+                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{event.title}</h3>
+                        <div className="space-y-1.5 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <Calendar className="w-4 h-4 text-primary" />
+                            <span>{formatDate(event.date)}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-accent" />
+                            <span>{event.location || "TBD"}</span>
+                          </div>
+                          {spotsLeft !== null && !soldOut && (
+                            <div className="flex items-center gap-2">
+                              <Users className="w-4 h-4 text-energy" />
+                              <span>{spotsLeft} spot{spotsLeft !== 1 ? "s" : ""} remaining</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+
+          {/* View All CTA */}
+          <div className="text-center">
+            <Link to="/events">
+              <Button variant="cta" size="lg" className="gap-2">
+                View All Events <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
