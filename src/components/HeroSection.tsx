@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, Users } from "lucide-react";
 import BackgroundSection from "@/components/ui/background-section";
 import { getSectionBackground } from "@/config/section-backgrounds";
 const HeroSection = () => {
@@ -12,14 +10,8 @@ const HeroSection = () => {
   };
   return <BackgroundSection {...backgroundConfig} className="min-h-screen flex items-center justify-center overflow-hidden">
       {/* Content */}
-      <div className="container mx-auto px-4 text-center animate-fade-up">
+      <div className="container mx-auto px-4 pt-16 md:pt-20 text-center animate-fade-up">
         <div className="max-w-4xl mx-auto space-y-8">
-          {/* Badges */}
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            
-            
-            
-          </div>
 
           {/* Main Headline */}
           <div className="flex justify-center">
@@ -79,20 +71,6 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Location Callout */}
-          <div className="pt-8 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-card/20 backdrop-blur-sm px-4 py-2 rounded-full border border-border">
-              <MapPin className="w-4 h-4 text-energy" />
-              <span className="text-sm text-foreground font-medium">
-                Upper Alabama St — across from 5 Points MARTA
-              </span>
-            </div>
-            <div className="mt-4">
-              <button onClick={handleGetDirections} className="text-sm text-primary hover:text-accent transition-colors underline">
-                Get Directions
-              </button>
-            </div>
-          </div>
         </div>
       </div>
 
