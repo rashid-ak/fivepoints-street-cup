@@ -99,15 +99,8 @@ const EventListing = () => {
                 return (
                   <Link key={event.id} to={`/events/${event.id}`} className="group">
                     <div className="bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-glow">
-                      <div className="h-48 bg-muted relative overflow-hidden">
-                        <img src={event.hero_image || defaultHero} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                        <div className="absolute top-3 right-3">
-                          {Number(event.price) === 0 ? (
-                            <Badge className="bg-green-600 text-foreground">Free</Badge>
-                          ) : (
-                            <Badge className="bg-primary text-primary-foreground">${Number(event.price)}</Badge>
-                          )}
-                        </div>
+                      <div className="aspect-square bg-muted relative overflow-hidden">
+                        <img src={event.hero_image || defaultHero} alt={event.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
                         {soldOut && (
                           <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
                             <Badge variant="destructive" className="text-lg px-4 py-1">Sold Out</Badge>
