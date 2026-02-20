@@ -75,12 +75,33 @@ const HeroSection = () => {
           <div className="flex flex-col items-center gap-2 text-white">
             <div className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-primary" />
-              <span className="font-medium">Upper Alabama St — across from 5 Points MARTA</span>
+              <span className="font-medium">Underground ATL -
+
+50 Upper Alabama St, Atlanta, GA 30303
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+ </span>
             </div>
-            <button
-              onClick={handleGetDirections}
-              className="px-4 py-2 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition"
-            >
+            <button onClick={handleGetDirections} className="px-4 py-2 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition">
+
               Get Directions
             </button>
           </div>
@@ -94,6 +115,4 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-energy-bounce" />
         </div>
       </div>
-    </BackgroundSection>;
-};
-export default HeroSection;
+    </BackgroundSection>;};export default HeroSection;
