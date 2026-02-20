@@ -1,0 +1,1 @@
+UPDATE public.events SET date = '2026-09-20', title = '5 Points Cup 2026' WHERE title = '5 Points Cup 2025';
