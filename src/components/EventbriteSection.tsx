@@ -100,50 +100,53 @@ const EventbriteSection = () => {
           ) : events.length === 0 ? (
             <p className="text-center text-muted-foreground text-lg mb-12">No upcoming events yet. Check back soon!</p>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
               {events.map((event) => {
                 const spotsLeft = event.capacity ? event.capacity - (event.registrant_count || 0) : null;
                 const soldOut = spotsLeft !== null && spotsLeft <= 0;
 
                 return (
-                  <Link key={event.id} to={`/events/${event.id}`} className="group">
-                    <div className="bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-glow">
-                      <div className="h-48 bg-muted relative overflow-hidden">
-                        <img src={event.hero_image || defaultHero} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                        <div className="absolute top-3 right-3">
-                          {Number(event.price) === 0 ? (
-                            <Badge className="bg-green-600 text-foreground">Free</Badge>
-                          ) : (
-                            <Badge className="bg-primary text-primary-foreground">${Number(event.price)}</Badge>
-                          )}
+                  <div key={event.id} className="group bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-glow">
+                    <div className="aspect-square bg-muted relative overflow-hidden">
+                      <img src={event.hero_image || defaultHero} alt={event.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+                      <div className="absolute top-3 right-3">
+                        {Number(event.price) === 0 ? (
+                          <Badge className="bg-green-600 text-foreground">Free</Badge>
+                        ) : (
+                          <Badge className="bg-primary text-primary-foreground">${Number(event.price)}</Badge>
+                        )}
+                      </div>
+                      {soldOut && (
+                        <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
+                          <Badge variant="destructive" className="text-lg px-4 py-1">Sold Out</Badge>
                         </div>
-                        {soldOut && (
-                          <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
-                            <Badge variant="destructive" className="text-lg px-4 py-1">Sold Out</Badge>
+                      )}
+                    </div>
+                    <div className="p-6 space-y-3">
+                      <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{event.title}</h3>
+                      <div className="space-y-1.5 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-primary" />
+                          <span>{formatDate(event.date)}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-accent" />
+                          <span>{event.location || "TBD"}</span>
+                        </div>
+                        {spotsLeft !== null && !soldOut && (
+                          <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4 text-energy" />
+                            <span>{spotsLeft} spot{spotsLeft !== 1 ? "s" : ""} remaining</span>
                           </div>
                         )}
                       </div>
-                      <div className="p-6 space-y-3">
-                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{event.title}</h3>
-                        <div className="space-y-1.5 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-primary" />
-                            <span>{formatDate(event.date)}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-accent" />
-                            <span>{event.location || "TBD"}</span>
-                          </div>
-                          {spotsLeft !== null && !soldOut && (
-                            <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4 text-energy" />
-                              <span>{spotsLeft} spot{spotsLeft !== 1 ? "s" : ""} remaining</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
+                      <Link to={`/events/${event.id}`}>
+                        <Button variant="cta" className="w-full mt-2 font-semibold">
+                          Sign Up
+                        </Button>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
