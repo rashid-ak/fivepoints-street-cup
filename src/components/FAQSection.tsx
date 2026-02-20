@@ -3,32 +3,37 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const FAQSection = () => {
   const faqs = [
     {
-      question: "Is the 5 Points Cup all-ages?",
-      answer: "Everyone of all ages are welcomed to spectate and enjoy the event! However, the teams will be participating in a men's competition. The event is designed to be family-friendly with activities for spectators of all ages."
+      question: "What is Five Points Cup?",
+      answer: "Five Points Cup is a fast-paced small-sided football experience built for players who thrive on competition, culture, and community. We host organized matches, tournaments, and pop-up games that bring street football energy into professionally run environments."
     },
     {
-      question: "What is the tournament format?",
-      answer: "The tournament features one round of games before single elimination, then single elimination starting from the round of 16. Each match is 3v3 futsal with first team to 5 goals winning. There's a 10-minute time cap, with the leader at time winning if no team reaches 5 goals. Ties are resolved by next-goal-wins."
+      question: "Is Five Points Cup a one-off event?",
+      answer: "No — Five Points Cup is an ongoing series. Alongside our headline tournaments, we regularly host pop-up matches, qualifiers, and special activations throughout the year in multiple locations. The goal is to create a consistent competitive ecosystem, not just a single event."
     },
     {
-      question: "What should players bring?",
-      answer: "Players should bring appropriate futsal/soccer shoes (no cleats on indoor courts), water bottles, and matching team uniforms or tops if possible. Balls will be provided by organizers. Shin guards are recommended but not required."
+      question: "What is the playing format?",
+      answer: "Most Five Points Cup matches are played in a fast, small-sided format (typically 3v3 or similar variations depending on the event). Games are designed to be high-intensity, quick-turnaround, and spectator-friendly, with rules that reward skill, creativity, and tempo."
     },
     {
-      question: "Is there parking available?",
-      answer: "Yes, Underground Atlanta offers parking options. However, we strongly recommend using MARTA as the venue is directly across from 5 Points MARTA Station, making public transit the most convenient option."
+      question: "How do I register for a game or tournament?",
+      answer: "Registration is completed online through our official sign-up page. Team captains (or individual players, when applicable) submit their details, complete payment if required, and receive confirmation by email. Spots are limited and filled on a first-come basis."
     },
     {
-      question: "Is MARTA nearby?",
-      answer: "Absolutely! The venue is directly across from 5 Points MARTA Station, one of Atlanta's most connected transit hubs. This makes the location easily accessible from anywhere in the metro area."
+      question: "Can individuals sign up, or do I need a full team?",
+      answer: "Both options may be available depending on the event. Some activations are team-based, while select pop-ups allow individual player registration and team placement. Check the specific event page for format and eligibility details."
     },
     {
-      question: "Can teams register the day of the event?",
-      answer: "Team registration closes before the event to ensure proper bracket setup and logistics. However, spectator RSVPs are welcome right up until event day. We encourage early team registration to secure your spot."
+      question: "What can players expect on match day?",
+      answer: "Players can expect a professionally organized street football environment — quality playing surfaces, clear scheduling, competitive matchups, and a strong cultural atmosphere. Five Points Cup events are built to feel fast, premium, and community-driven from arrival to final whistle."
     },
     {
-      question: "What about food and drinks?",
-      answer: "Multiple food trucks will be on-site offering diverse dining options. There will also be retail pop-ups and other vendors throughout the venue."
+      question: "What type of playing surface will be used?",
+      answer: "Playing surfaces may vary by location and activation (e.g., turf, futsal court, or specialty street surface). The exact surface for each match or tournament will always be specified on the official sign-up page so teams know what to expect ahead of time."
+    },
+    {
+      question: "What are the core game rules and match structure?",
+      answer: null,
+      richAnswer: true
     }
   ];
 
@@ -42,9 +47,6 @@ const FAQSection = () => {
               FREQUENTLY ASKED <span className="text-primary">QUESTIONS</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-hero mx-auto mb-8" />
-            <p className="text-xl text-muted-foreground">
-              Everything you need to know about the 5 Points Cup
-            </p>
           </div>
 
           {/* FAQ Accordion */}
@@ -59,7 +61,25 @@ const FAQSection = () => {
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed pt-2 pb-4">
-                  {faq.answer}
+                  {faq.richAnswer ? (
+                    <div className="space-y-4">
+                      <p>
+                        Five Points Cup matches are built for speed and intensity. Standard match time is 10 minutes, unless otherwise specified, with 5 goals as the target score — if a team reaches 5 goals, the game ends immediately.
+                      </p>
+                      <p className="font-semibold text-foreground">Additional rules include:</p>
+                      <ul className="list-disc list-inside space-y-2 pl-2">
+                        <li>Small penalty box in play</li>
+                        <li>Penalty kicks awarded if the ball is illegally touched inside the box (taken from the opposite penalty mark)</li>
+                        <li>Substitutions must occur during official game stoppages</li>
+                        <li>Yellow card = 1-minute sin bin, forcing the team to play down a player during that period</li>
+                      </ul>
+                      <p className="text-sm italic text-muted-foreground">
+                        Final rule variations, if any, will always be communicated on the event's official registration page.
+                      </p>
+                    </div>
+                  ) : (
+                    faq.answer
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -71,7 +91,7 @@ const FAQSection = () => {
               Still have questions?
             </h3>
             <p className="text-muted-foreground mb-6">
-              Reach out to us directly for any additional information about the tournament.
+              Reach out to us directly for any additional information.
             </p>
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
