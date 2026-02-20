@@ -19,7 +19,7 @@ const HeroSection = () => {
           </div>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white max-w-3xl mx-auto">3v3 Street Futsal in Atlanta
+          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white max-w-3xl mx-auto">3v3 Street Futsal @ Underground Atlanta
 
         </p>
 
@@ -76,7 +76,7 @@ const HeroSection = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
+        <div className="w-6 h-10 border-2 border-primary rounded-full flex-row flex items-center justify-center">
           <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-energy-bounce" />
         </div>
       </div>
