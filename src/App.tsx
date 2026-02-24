@@ -23,6 +23,7 @@ import AdminParticipants from "./pages/admin/AdminParticipants";
 import AdminPayments from "./pages/admin/AdminPayments";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminMessaging from "./pages/admin/AdminMessaging";
+import AdminReports from "./pages/admin/AdminReports";
 import AdminRoute from "./components/AdminRoute";
 
 const queryClient = new QueryClient();
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/admin/participants" element={<AdminRoute><AdminParticipants /></AdminRoute>} />
             <Route path="/admin/payments" element={<AdminRoute><AdminPayments /></AdminRoute>} />
             <Route path="/admin/messaging" element={<AdminRoute><AdminMessaging /></AdminRoute>} />
+            <Route path="/admin/reports" element={<AdminRoute><AdminReports /></AdminRoute>} />
             <Route path="/admin/settings" element={<AdminRoute><AdminSettings /></AdminRoute>} />
             {/* Legacy */}
             <Route path="/admin-legacy" element={<Admin />} />
