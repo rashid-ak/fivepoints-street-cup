@@ -25,11 +25,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const checkAdmin = async (accessToken: string) => {
     setAdminLoading(true);
     try {
+      console.log("[useAuth] checkAdmin: invoking check-admin edge function");
       const { data, error } = await supabase.functions.invoke("check-admin", {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
-      setIsAdmin(data?.isAdmin ?? false);
-    } catch {
+      console.log("[useAuth] checkAdmin result:", { data, error });
+      if (error) {
+        console.error("[useAuth] checkAdmin error:", error);
+        setIsAdmin(false);
+      } else {
+        setIsAdmin(data?.isAdmin ?? false);
+      }
+    } catch (e) {
+      console.error("[useAuth] checkAdmin exception:", e);
       setIsAdmin(false);
     } finally {
       setAdminLoading(false);
