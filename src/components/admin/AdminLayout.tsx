@@ -23,10 +23,8 @@ import {
   Settings,
   LogOut,
   Plus,
-  Copy,
-  Send,
-  Download,
   ChevronLeft,
+  Gamepad2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReactNode } from "react";
@@ -38,6 +36,7 @@ const navItems = [
   { title: "Messaging", url: "/admin/messaging", icon: Mail },
   { title: "Payments", url: "/admin/payments", icon: CreditCard },
   { title: "Reports", url: "/admin/reports", icon: BarChart3 },
+  { title: "Game Day", url: "/admin/gameday", icon: Gamepad2 },
   { title: "Content", url: "/admin/content", icon: FileText },
   { title: "Settings", url: "/admin/settings", icon: Settings },
 ];
