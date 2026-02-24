@@ -56,6 +56,36 @@ export type Database = {
         }
         Relationships: []
       }
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          entity_id: string | null
+          entity_type: string
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json | null
+          entity_id?: string | null
+          entity_type: string
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          entity_id?: string | null
+          entity_type?: string
+          id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       email_logs: {
         Row: {
           created_at: string
@@ -94,48 +124,149 @@ export type Database = {
       }
       events: {
         Row: {
+          address: string | null
           capacity: number | null
           created_at: string
+          custom_rules_notes: string | null
           date: string
           description: string | null
+          display_order: number | null
           email_template: string | null
           end_time: string | null
+          event_type: string
+          featured: boolean
           hero_image: string | null
           id: string
           location: string | null
+          location_id: string | null
+          location_notes: string | null
+          map_link: string | null
+          match_duration: number | null
+          max_roster_size: number | null
+          min_roster_size: number | null
+          pinned: boolean
           price: number | null
+          registration_close_at: string | null
+          roster_lock_at: string | null
+          short_description: string | null
           start_time: string
+          status: string
+          surface_type: string | null
+          target_score: number | null
           title: string
+          updated_at: string
+          venue_name: string | null
+          waitlist_capacity: number | null
+          waitlist_enabled: boolean
+        }
+        Insert: {
+          address?: string | null
+          capacity?: number | null
+          created_at?: string
+          custom_rules_notes?: string | null
+          date: string
+          description?: string | null
+          display_order?: number | null
+          email_template?: string | null
+          end_time?: string | null
+          event_type?: string
+          featured?: boolean
+          hero_image?: string | null
+          id?: string
+          location?: string | null
+          location_id?: string | null
+          location_notes?: string | null
+          map_link?: string | null
+          match_duration?: number | null
+          max_roster_size?: number | null
+          min_roster_size?: number | null
+          pinned?: boolean
+          price?: number | null
+          registration_close_at?: string | null
+          roster_lock_at?: string | null
+          short_description?: string | null
+          start_time: string
+          status?: string
+          surface_type?: string | null
+          target_score?: number | null
+          title: string
+          updated_at?: string
+          venue_name?: string | null
+          waitlist_capacity?: number | null
+          waitlist_enabled?: boolean
+        }
+        Update: {
+          address?: string | null
+          capacity?: number | null
+          created_at?: string
+          custom_rules_notes?: string | null
+          date?: string
+          description?: string | null
+          display_order?: number | null
+          email_template?: string | null
+          end_time?: string | null
+          event_type?: string
+          featured?: boolean
+          hero_image?: string | null
+          id?: string
+          location?: string | null
+          location_id?: string | null
+          location_notes?: string | null
+          map_link?: string | null
+          match_duration?: number | null
+          max_roster_size?: number | null
+          min_roster_size?: number | null
+          pinned?: boolean
+          price?: number | null
+          registration_close_at?: string | null
+          roster_lock_at?: string | null
+          short_description?: string | null
+          start_time?: string
+          status?: string
+          surface_type?: string | null
+          target_score?: number | null
+          title?: string
+          updated_at?: string
+          venue_name?: string | null
+          waitlist_capacity?: number | null
+          waitlist_enabled?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "events_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "locations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      locations: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: string
+          map_link: string | null
+          name: string
+          notes: string | null
           updated_at: string
         }
         Insert: {
-          capacity?: number | null
+          address?: string | null
           created_at?: string
-          date: string
-          description?: string | null
-          email_template?: string | null
-          end_time?: string | null
-          hero_image?: string | null
           id?: string
-          location?: string | null
-          price?: number | null
-          start_time: string
-          title: string
+          map_link?: string | null
+          name: string
+          notes?: string | null
           updated_at?: string
         }
         Update: {
-          capacity?: number | null
+          address?: string | null
           created_at?: string
-          date?: string
-          description?: string | null
-          email_template?: string | null
-          end_time?: string | null
-          hero_image?: string | null
           id?: string
-          location?: string | null
-          price?: number | null
-          start_time?: string
-          title?: string
+          map_link?: string | null
+          name?: string
+          notes?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -167,39 +298,104 @@ export type Database = {
         }
         Relationships: []
       }
+      promo_codes: {
+        Row: {
+          active: boolean
+          code: string
+          created_at: string
+          current_uses: number
+          discount_type: string
+          discount_value: number
+          event_id: string | null
+          expires_at: string | null
+          id: string
+          max_uses: number | null
+        }
+        Insert: {
+          active?: boolean
+          code: string
+          created_at?: string
+          current_uses?: number
+          discount_type?: string
+          discount_value?: number
+          event_id?: string | null
+          expires_at?: string | null
+          id?: string
+          max_uses?: number | null
+        }
+        Update: {
+          active?: boolean
+          code?: string
+          created_at?: string
+          current_uses?: number
+          discount_type?: string
+          discount_value?: number
+          event_id?: string | null
+          expires_at?: string | null
+          id?: string
+          max_uses?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "promo_codes_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       registrants: {
         Row: {
+          checked_in: boolean
+          checked_in_at: string | null
           created_at: string
           email: string
+          emergency_contact: string | null
           event_id: string
           full_name: string
           id: string
           payment_status: string | null
           phone: string | null
+          promo_code_id: string | null
           stripe_payment_id: string | null
           team_name: string | null
+          waitlisted: boolean
+          waiver_accepted: boolean
         }
         Insert: {
+          checked_in?: boolean
+          checked_in_at?: string | null
           created_at?: string
           email: string
+          emergency_contact?: string | null
           event_id: string
           full_name: string
           id?: string
           payment_status?: string | null
           phone?: string | null
+          promo_code_id?: string | null
           stripe_payment_id?: string | null
           team_name?: string | null
+          waitlisted?: boolean
+          waiver_accepted?: boolean
         }
         Update: {
+          checked_in?: boolean
+          checked_in_at?: string | null
           created_at?: string
           email?: string
+          emergency_contact?: string | null
           event_id?: string
           full_name?: string
           id?: string
           payment_status?: string | null
           phone?: string | null
+          promo_code_id?: string | null
           stripe_payment_id?: string | null
           team_name?: string | null
+          waitlisted?: boolean
+          waiver_accepted?: boolean
         }
         Relationships: [
           {
@@ -207,6 +403,13 @@ export type Database = {
             columns: ["event_id"]
             isOneToOne: false
             referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "registrants_promo_code_id_fkey"
+            columns: ["promo_code_id"]
+            isOneToOne: false
+            referencedRelation: "promo_codes"
             referencedColumns: ["id"]
           },
         ]
@@ -363,7 +566,13 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      app_role:
+        | "admin"
+        | "moderator"
+        | "user"
+        | "event_staff"
+        | "finance"
+        | "content_manager"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -491,7 +700,14 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user"],
+      app_role: [
+        "admin",
+        "moderator",
+        "user",
+        "event_staff",
+        "finance",
+        "content_manager",
+      ],
     },
   },
 } as const
