@@ -25,6 +25,7 @@ import AdminSettings from "./pages/admin/AdminSettings";
 import AdminMessaging from "./pages/admin/AdminMessaging";
 import AdminReports from "./pages/admin/AdminReports";
 import AdminContent from "./pages/admin/AdminContent";
+import AdminGameDay from "./pages/admin/AdminGameDay";
 import AdminRoute from "./components/AdminRoute";
 
 const queryClient = new QueryClient();
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/admin/messaging" element={<AdminRoute><AdminMessaging /></AdminRoute>} />
             <Route path="/admin/reports" element={<AdminRoute><AdminReports /></AdminRoute>} />
             <Route path="/admin/content" element={<AdminRoute><AdminContent /></AdminRoute>} />
+            <Route path="/admin/gameday" element={<AdminRoute><AdminGameDay /></AdminRoute>} />
             <Route path="/admin/settings" element={<AdminRoute><AdminSettings /></AdminRoute>} />
             {/* Legacy */}
             <Route path="/admin-legacy" element={<Admin />} />

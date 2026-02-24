@@ -45,6 +45,9 @@ serve(async (req) => {
     } else if (emailType === "rsvp_confirmation") {
       subject = "✅ RSVP Confirmed - 5 Points Cup Event";
       emailContent = generateRSVPConfirmationEmail(data);
+    } else if (emailType === "manual_blast") {
+      subject = data.subject || "5 Points Cup Update";
+      emailContent = generateManualBlastEmail(data);
     } else {
       throw new Error("Invalid email type");
     }
@@ -243,6 +246,30 @@ function generateRSVPConfirmationEmail(data: any): string {
         </div>
 
         <div style="background: #e9ecef; padding: 15px; border-radius: 8px; text-align: center; font-size: 14px; color: #6c757d;">
+          Questions? Reply to this email or contact us at rashid@akanni.marketing
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+function generateManualBlastEmail(data: any): string {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${data.subject || "5 Points Cup"}</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="background: linear-gradient(135deg, #e67e22 0%, #f1c40f 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+        <h1 style="margin: 0; font-size: 24px;">5 Points Cup</h1>
+      </div>
+      <div style="background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px;">
+        ${data.body || ""}
+        <div style="background: #e9ecef; padding: 15px; border-radius: 8px; text-align: center; font-size: 14px; color: #6c757d; margin-top: 20px;">
           Questions? Reply to this email or contact us at rashid@akanni.marketing
         </div>
       </div>
