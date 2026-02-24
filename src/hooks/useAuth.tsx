@@ -25,19 +25,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const checkAdmin = async (accessToken: string) => {
     setAdminLoading(true);
     try {
-      console.log("[useAuth] checkAdmin: invoking check-admin edge function");
-      const { data, error } = await supabase.functions.invoke("check-admin", {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-      console.log("[useAuth] checkAdmin result:", { data, error });
-      if (error) {
-        console.error("[useAuth] checkAdmin error:", error);
-        setIsAdmin(false);
-      } else {
-        setIsAdmin(data?.isAdmin ?? false);
-      }
+      const response = await fetch(
+        `https://ifbidnkycpzloiveytke.supabase.co/functions/v1/check-admin`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+            apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmYmlkbmt5Y3B6bG9pdmV5dGtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4MjA3MTcsImV4cCI6MjA3MTM5NjcxN30.yShVKUxop3KKIWYYEkK8yALZJZMMnhLfDIxyjylNi5s",
+          },
+        }
+      );
+      const data = await response.json();
+      setIsAdmin(data?.isAdmin ?? false);
     } catch (e) {
-      console.error("[useAuth] checkAdmin exception:", e);
+      console.error("[useAuth] checkAdmin error:", e);
       setIsAdmin(false);
     } finally {
       setAdminLoading(false);
