@@ -271,6 +271,48 @@ export type Database = {
         }
         Relationships: []
       }
+      media: {
+        Row: {
+          alt_text: string | null
+          created_at: string
+          filename: string
+          id: string
+          mime_type: string | null
+          size_bytes: number | null
+          storage_path: string
+          tags: string[] | null
+          updated_at: string
+          uploaded_by: string | null
+          url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          created_at?: string
+          filename: string
+          id?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          storage_path: string
+          tags?: string[] | null
+          updated_at?: string
+          uploaded_by?: string | null
+          url: string
+        }
+        Update: {
+          alt_text?: string | null
+          created_at?: string
+          filename?: string
+          id?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          storage_path?: string
+          tags?: string[] | null
+          updated_at?: string
+          uploaded_by?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -443,6 +485,83 @@ export type Database = {
           zip_code?: string | null
         }
         Relationships: []
+      }
+      site_modules: {
+        Row: {
+          config: Json | null
+          display_order: number | null
+          enabled: boolean
+          id: string
+          label: string
+          module_key: string
+          updated_at: string
+        }
+        Insert: {
+          config?: Json | null
+          display_order?: number | null
+          enabled?: boolean
+          id?: string
+          label: string
+          module_key: string
+          updated_at?: string
+        }
+        Update: {
+          config?: Json | null
+          display_order?: number | null
+          enabled?: boolean
+          id?: string
+          label?: string
+          module_key?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          confirmed_at: string | null
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          invite_token: string | null
+          invited_at: string | null
+          phone: string | null
+          status: string
+          team_id: string
+        }
+        Insert: {
+          confirmed_at?: string | null
+          created_at?: string
+          email?: string | null
+          full_name: string
+          id?: string
+          invite_token?: string | null
+          invited_at?: string | null
+          phone?: string | null
+          status?: string
+          team_id: string
+        }
+        Update: {
+          confirmed_at?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          invite_token?: string | null
+          invited_at?: string | null
+          phone?: string | null
+          status?: string
+          team_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       teams: {
         Row: {
