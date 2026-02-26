@@ -45,7 +45,7 @@ serve(async (req) => {
       }
     }
 
-    // Check duplicate
+    // Check duplicate (only paid registrations block)
     const { data: existing } = await supabase
       .from("registrants")
       .select("id")
@@ -56,17 +56,49 @@ serve(async (req) => {
 
     if (existing) throw new Error("You are already registered for this event");
 
+    // Step 1: Create pending registrant BEFORE Stripe session
+    // Clean up any prior pending record for this email+event
+    await supabase
+      .from("registrants")
+      .delete()
+      .eq("event_id", eventId)
+      .eq("email", email)
+      .eq("payment_status", "pending");
+
+    const { data: registrant, error: regError } = await supabase
+      .from("registrants")
+      .insert({
+        event_id: eventId,
+        full_name: fullName,
+        email,
+        phone: phone || null,
+        team_name: teamName || null,
+        payment_status: "pending",
+        source: "public",
+      })
+      .select()
+      .single();
+
+    if (regError || !registrant) {
+      console.error("Failed to create pending registrant:", regError);
+      throw new Error("Failed to create registration record");
+    }
+
+    const registrationId = registrant.id;
+
+    // Step 2: Create Stripe Checkout Session with registration_id in metadata
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
 
-    // Find or reference customer
     const customers = await stripe.customers.list({ email, limit: 1 });
-    let customerId = customers.data.length > 0 ? customers.data[0].id : undefined;
+    const customerId = customers.data.length > 0 ? customers.data[0].id : undefined;
 
     const origin = req.headers.get("origin") || "https://fivepoints-street-cup.lovable.app";
+    const amountCents = Math.round(Number(event.price) * 100);
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : email,
+      client_reference_id: registrationId,
       line_items: [{
         price_data: {
           currency: "usd",
@@ -74,7 +106,7 @@ serve(async (req) => {
             name: event.title,
             description: `Registration for ${event.title}`,
           },
-          unit_amount: Math.round(Number(event.price) * 100),
+          unit_amount: amountCents,
         },
         quantity: 1,
       }],
@@ -82,7 +114,10 @@ serve(async (req) => {
       success_url: `${origin}/events/${eventId}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/events/${eventId}/register`,
       metadata: {
+        registration_id: registrationId,
         event_id: eventId,
+        registration_type: event.event_type || "individual",
+        environment: "live",
         full_name: fullName,
         email,
         phone: phone || "",
@@ -90,11 +125,12 @@ serve(async (req) => {
       },
     });
 
-    // Create initial payment record
+    // Step 3: Create payments row linked to registration
     await supabase.from("payments").insert({
+      registration_id: registrationId,
       event_id: eventId,
       stripe_checkout_session_id: session.id,
-      amount_cents: Math.round(Number(event.price) * 100),
+      amount_cents: amountCents,
       currency: "usd",
       status: "requires_payment",
     });
