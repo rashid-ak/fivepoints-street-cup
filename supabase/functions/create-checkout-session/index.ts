@@ -90,6 +90,15 @@ serve(async (req) => {
       },
     });
 
+    // Create initial payment record
+    await supabase.from("payments").insert({
+      event_id: eventId,
+      stripe_checkout_session_id: session.id,
+      amount_cents: Math.round(Number(event.price) * 100),
+      currency: "usd",
+      status: "requires_payment",
+    });
+
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });

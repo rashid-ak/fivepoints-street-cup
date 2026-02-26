@@ -166,8 +166,10 @@ export type Database = {
       events: {
         Row: {
           address: string | null
+          allow_walkups: boolean
           capacity: number | null
           created_at: string
+          created_by: string | null
           custom_rules_notes: string | null
           date: string
           description: string | null
@@ -178,6 +180,7 @@ export type Database = {
           featured: boolean
           hero_image: string | null
           id: string
+          is_free: boolean
           location: string | null
           location_id: string | null
           location_notes: string | null
@@ -187,9 +190,13 @@ export type Database = {
           min_roster_size: number | null
           pinned: boolean
           price: number | null
+          price_cents: number | null
           registration_close_at: string | null
+          require_waiver: boolean
           roster_lock_at: string | null
+          rules_json: Json | null
           short_description: string | null
+          slug: string | null
           start_time: string
           status: string
           surface_type: string | null
@@ -202,8 +209,10 @@ export type Database = {
         }
         Insert: {
           address?: string | null
+          allow_walkups?: boolean
           capacity?: number | null
           created_at?: string
+          created_by?: string | null
           custom_rules_notes?: string | null
           date: string
           description?: string | null
@@ -214,6 +223,7 @@ export type Database = {
           featured?: boolean
           hero_image?: string | null
           id?: string
+          is_free?: boolean
           location?: string | null
           location_id?: string | null
           location_notes?: string | null
@@ -223,9 +233,13 @@ export type Database = {
           min_roster_size?: number | null
           pinned?: boolean
           price?: number | null
+          price_cents?: number | null
           registration_close_at?: string | null
+          require_waiver?: boolean
           roster_lock_at?: string | null
+          rules_json?: Json | null
           short_description?: string | null
+          slug?: string | null
           start_time: string
           status?: string
           surface_type?: string | null
@@ -238,8 +252,10 @@ export type Database = {
         }
         Update: {
           address?: string | null
+          allow_walkups?: boolean
           capacity?: number | null
           created_at?: string
+          created_by?: string | null
           custom_rules_notes?: string | null
           date?: string
           description?: string | null
@@ -250,6 +266,7 @@ export type Database = {
           featured?: boolean
           hero_image?: string | null
           id?: string
+          is_free?: boolean
           location?: string | null
           location_id?: string | null
           location_notes?: string | null
@@ -259,9 +276,13 @@ export type Database = {
           min_roster_size?: number | null
           pinned?: boolean
           price?: number | null
+          price_cents?: number | null
           registration_close_at?: string | null
+          require_waiver?: boolean
           roster_lock_at?: string | null
+          rules_json?: Json | null
           short_description?: string | null
+          slug?: string | null
           start_time?: string
           status?: string
           surface_type?: string | null
@@ -354,6 +375,69 @@ export type Database = {
         }
         Relationships: []
       }
+      payments: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          currency: string
+          event_id: string
+          id: string
+          provider: string
+          refunded_cents: number
+          registration_id: string | null
+          status: string
+          stripe_checkout_session_id: string | null
+          stripe_customer_id: string | null
+          stripe_payment_intent_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          event_id: string
+          id?: string
+          provider?: string
+          refunded_cents?: number
+          registration_id?: string | null
+          status?: string
+          stripe_checkout_session_id?: string | null
+          stripe_customer_id?: string | null
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          currency?: string
+          event_id?: string
+          id?: string
+          provider?: string
+          refunded_cents?: number
+          registration_id?: string | null
+          status?: string
+          stripe_checkout_session_id?: string | null
+          stripe_customer_id?: string | null
+          stripe_payment_intent_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payments_registration_id_fkey"
+            columns: ["registration_id"]
+            isOneToOne: false
+            referencedRelation: "registrants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -428,11 +512,51 @@ export type Database = {
           },
         ]
       }
+      refunds: {
+        Row: {
+          amount_cents: number
+          created_at: string
+          created_by: string | null
+          id: string
+          payment_id: string
+          reason: string | null
+          stripe_refund_id: string | null
+        }
+        Insert: {
+          amount_cents: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payment_id: string
+          reason?: string | null
+          stripe_refund_id?: string | null
+        }
+        Update: {
+          amount_cents?: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payment_id?: string
+          reason?: string | null
+          stripe_refund_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "refunds_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       registrants: {
         Row: {
+          check_in_code: string | null
           checked_in: boolean
           checked_in_at: string | null
           created_at: string
+          custom_fields: Json | null
           email: string
           emergency_contact: string | null
           event_id: string
@@ -441,15 +565,19 @@ export type Database = {
           payment_status: string | null
           phone: string | null
           promo_code_id: string | null
+          source: string
           stripe_payment_id: string | null
           team_name: string | null
           waitlisted: boolean
           waiver_accepted: boolean
+          waiver_accepted_at: string | null
         }
         Insert: {
+          check_in_code?: string | null
           checked_in?: boolean
           checked_in_at?: string | null
           created_at?: string
+          custom_fields?: Json | null
           email: string
           emergency_contact?: string | null
           event_id: string
@@ -458,15 +586,19 @@ export type Database = {
           payment_status?: string | null
           phone?: string | null
           promo_code_id?: string | null
+          source?: string
           stripe_payment_id?: string | null
           team_name?: string | null
           waitlisted?: boolean
           waiver_accepted?: boolean
+          waiver_accepted_at?: string | null
         }
         Update: {
+          check_in_code?: string | null
           checked_in?: boolean
           checked_in_at?: string | null
           created_at?: string
+          custom_fields?: Json | null
           email?: string
           emergency_contact?: string | null
           event_id?: string
@@ -475,10 +607,12 @@ export type Database = {
           payment_status?: string | null
           phone?: string | null
           promo_code_id?: string | null
+          source?: string
           stripe_payment_id?: string | null
           team_name?: string | null
           waitlisted?: boolean
           waiver_accepted?: boolean
+          waiver_accepted_at?: string | null
         }
         Relationships: [
           {
@@ -524,6 +658,42 @@ export type Database = {
           id?: string
           party_size?: number | null
           zip_code?: string | null
+        }
+        Relationships: []
+      }
+      scheduled_jobs: {
+        Row: {
+          attempts: number
+          created_at: string
+          id: string
+          job_type: string
+          last_error: string | null
+          payload: Json
+          run_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          created_at?: string
+          id?: string
+          job_type?: string
+          last_error?: string | null
+          payload?: Json
+          run_at: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          created_at?: string
+          id?: string
+          job_type?: string
+          last_error?: string | null
+          payload?: Json
+          run_at?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }

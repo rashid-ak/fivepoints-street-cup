@@ -73,6 +73,12 @@ verify_jwt = false
 [functions.check-admin]
 verify_jwt = false
 
+[functions.issue-refund]
+verify_jwt = false
+
+[functions.run-scheduled-jobs]
+verify_jwt = false
+
 [edge-runtime]
 policy = "per_worker"
 inspector_port = 8083

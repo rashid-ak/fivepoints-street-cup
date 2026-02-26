@@ -101,6 +101,7 @@ const AdminGameDay = () => {
       checked_in: true,
       checked_in_at: new Date().toISOString(),
       waiver_accepted: true,
+      source: "walkup",
     });
 
     toast({ title: `${walkUpForm.full_name} added & checked in` });
@@ -113,9 +114,9 @@ const AdminGameDay = () => {
     const input = scanInput.trim().toLowerCase();
     if (!input) return;
 
-    // Try to match by email or ID
-    const match = registrants.find((r) =>
-      r.email.toLowerCase() === input || r.id === input
+    // Try to match by email, ID, or check_in_code
+    const match = registrants.find((r: any) =>
+      r.email.toLowerCase() === input || r.id === input || r.check_in_code === scanInput.trim()
     );
 
     if (match) {
