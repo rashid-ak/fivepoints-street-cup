@@ -32,6 +32,7 @@ const sundaySchedule: [string, string][] = [
 
 const rules = [
   "Matches are 10 minutes OR first to 5 goals.",
+  "6 players max per team (3 on the court, 3 subs).",
   "Ball crossing the line is out of play unless modified by tournament staff.",
   "Substitutions only when play is stopped.",
   "Teams must notify the referee before making substitutions.",
