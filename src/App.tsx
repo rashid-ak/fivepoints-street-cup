@@ -27,6 +27,7 @@ import AdminReports from "./pages/admin/AdminReports";
 import AdminContent from "./pages/admin/AdminContent";
 import AdminGameDay from "./pages/admin/AdminGameDay";
 import AdminRoute from "./components/AdminRoute";
+import CupLanding from "./pages/CupLanding";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/cup" element={<CupLanding />} />
             <Route path="/events" element={<EventListing />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/events/:id/register" element={<EventRegister />} />
